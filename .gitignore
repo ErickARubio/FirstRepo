@@ -1,0 +1,33 @@
+# Archivos pesados que NO subimos a GitHub
+*.aep
+*.aep.bak
+*.mp4
+*.mov
+*.avi
+*.wav
+*.mp3
+*.psd
+*.ai
+
+# Carpetas pesadas
+04_Animation/cache/
+04_Animation/renders/
+05_Final/exports/
+node_modules/
+__pycache__/
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Datos sensibles (NUNCA subir)
+*.env
+api_keys.txt
+credentials.json
+*.key
+
+# Archivos temporales
+*.tmp
+*.log
+*.bak
