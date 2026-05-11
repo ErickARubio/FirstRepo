@@ -1,9 +1,37 @@
 {
-  "current_project": null,
+  "current_project": {
+    "id": "2026-05-edomex-cdmx",
+    "tema": "La periferia que subsidia al centro: cómo el Estado de México hace funcionar a Ciudad de México",
+    "tesis_central": "La economía visible de Ciudad de México se sostiene con trabajadores que no viven, no votan ni pagan impuestos ahí. La periferia mexiquense subsidia diariamente al centro de la megarregión — y nadie lo gobierna.",
+    "serie": "ZMVM como megarregión metropolitana",
+    "pieza": 1,
+    "fase_actual": "COMPLETADO",
+    "tesis_aprobada": "Tesis 1: El impuesto que no regresa — Ciudad de México recauda el ISN de trabajadores que viven en el Estado de México, financiando servicios capitalinos con trabajo mexiquense que no recibe esos beneficios.",
+    "checkpoints": {
+      "cp1_tesis": true,
+      "cp2_guion": true,
+      "cp3_visual": true,
+      "cp4_voz": true,
+      "cp5_animacion": true
+    },
+    "archivos_generados": ["01_Research/tesis_candidatas.md", "01_Research/sources.md", "01_Research/findings.md", "02_Script/script_draft.md", "03_Assets/visual_brief.md", "02_Script/voice_brief.md", "02_Script/script_for_elevenlabs.txt", "04_Animation/animation_plan.md", "04_Animation/ae_script.jsx"],
+    "parametros": {
+      "duracion_min": 6,
+      "duracion_max": 7,
+      "audiencia": "profesionales informados, perfil económico/político/urbano",
+      "plataforma": "YouTube + versión vertical IG/TikTok",
+      "estilo": "Bloomberg Originals / The Economist Films / Vox / Voronoi",
+      "tono": "editorial, sobrio, datos con peso emocional contenido",
+      "idioma": "es-MX neutro"
+    },
+    "iniciado": "2026-05-10",
+    "ultima_actualizacion": "2026-05-10",
+    "estado": "PRODUCCION_APROBADA"
+  },
   "history": [],
   "settings": {
     "voice_provider": "elevenlabs",
-    "target_duration_min": 5,
+    "target_duration_min": 6,
     "target_duration_max": 7,
     "language": "es-MX",
     "output_platform": "youtube"

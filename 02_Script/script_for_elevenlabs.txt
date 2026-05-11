@@ -1,0 +1,176 @@
+EL IMPUESTO QUE NO REGRESA
+Script para síntesis de voz — ElevenLabs
+Proyecto: 2026-05-edomex-cdmx | Voz: Mateo (es-MX) | Modelo: eleven_multilingual_v2
+Velocidad: 0.90 | Stability: 0.55 | Similarity: 0.75 | Style: 0.30
+Duración estimada: 6:30
+
+INSTRUCCIONES DE LECTURA:
+  [...]  = pausa dramática (1.5-2 segundos)
+  MAYÚSCULAS = énfasis de peso (no gritar, solo marcar)
+  Comas y puntos ya incorporan pausas naturales según ElevenLabs.
+  Generar chunk por chunk, no el texto completo de una vez.
+
+================================================================================
+
+[CHUNK_01 — Acto 1: Gancho — 00:00–00:15 — 15 seg]
+
+Cada lunes, millones de personas cruzan una frontera INVISIBLE
+entre el Estado de México y Ciudad de México.
+Nadie la celebra.
+Nadie la gobierna. [...]
+Pero la economía de la ciudad más grande del país funciona GRACIAS a ella.
+
+================================================================================
+
+[CHUNK_02 — Acto 1: Gancho — 00:15–00:45 — 30 seg]
+
+Hay un mecanismo fiscal que casi nadie conoce.
+Se llama Impuesto Sobre Nóminas. [...]
+Cada empresa con domicilio en Ciudad de México paga CUATRO pesos de cada cien de nómina
+al gobierno capitalino.
+Ese impuesto financia el Metro, el Metrobús y los servicios de la ciudad.
+Y lo paga también, por los trabajadores que viven en el Estado de México. [...]
+Trabajadores que regresan cada noche a una ciudad DIFERENTE.
+
+================================================================================
+
+[CHUNK_03 — Acto 2: Contexto histórico — 00:45–01:05 — 20 seg]
+
+Ciudad de México genera el catorce punto ocho por ciento
+del producto interno bruto NACIONAL. [...]
+Más que toda la industria automotriz del país.
+Y el ochenta y tres punto cinco por ciento de ese producto viene del sector SERVICIOS:
+oficinas, restaurantes, comercio, finanzas, gobierno.
+
+================================================================================
+
+[CHUNK_04 — Acto 2: Contexto histórico — 01:05–01:30 — 25 seg]
+
+Esos servicios necesitan PERSONAS.
+Pero vivir en Ciudad de México es caro.
+Desde los años setenta y ochenta,
+la expansión urbana del Estado de México absorbió a millones de familias
+que no podían pagar la ciudad que SERVÍAN. [...]
+Ecatepec pasó de cuatrocientos mil habitantes en mil novecientos setenta,
+a un millón setecientos mil hoy.
+
+================================================================================
+
+[CHUNK_05 — Acto 2: Contexto histórico — 01:30–01:50 — 20 seg]
+
+Se construyó así un sistema IMPLÍCITO: [...]
+la capital produce el empleo, y se queda con el producto.
+La periferia produce los trabajadores, y se queda con los costos. [...]
+Nadie diseñó este arreglo.
+Pero lleva CINCUENTA años funcionando.
+
+================================================================================
+
+[CHUNK_06 — Acto 3: Anatomía del fenómeno — 01:50–02:20 — 30 seg]
+
+El número es este: [...]
+siete millones... setecientos setenta mil viajes DIARIOS,
+entre el Estado de México y Ciudad de México.
+Eso documenta la Encuesta Origen Destino del Instituto Nacional de Estadística y Geografía,
+del año dos mil diecisiete. [...]
+El veintidós punto cinco por ciento de todos los desplazamientos metropolitanos cruzan esa frontera.
+El principal motivo declarado: el TRABAJO.
+
+================================================================================
+
+[CHUNK_07 — Acto 3: Anatomía del fenómeno — 02:20–02:50 — 30 seg]
+
+El tiempo promedio de ese viaje es OCHENTA Y CINCO MINUTOS. [...]
+En zonas más alejadas de la periferia, puede superar tres horas por sentido.
+Un trabajador que entra a las nueve de la mañana al Centro Histórico desde Ecatepec,
+sale de su casa a las cinco y media. [...]
+Son CATORCE HORAS fuera de casa.
+Ningún presupuesto público contabiliza ese costo.
+
+================================================================================
+
+[CHUNK_08 — Acto 3: Anatomía del fenómeno — 02:50–03:20 — 30 seg]
+
+Y aquí está el mecanismo: [...]
+el Impuesto Sobre Nóminas se aplica en el territorio donde se TRABAJA,
+no donde se VIVE. [...]
+Las empresas de Ciudad de México pagan cuatro por ciento de su nómina al gobierno capitalino,
+independientemente de si sus empleados duermen en la Condesa, o en Chimalhuacán.
+El impuesto sigue al TRABAJO. [...]
+No al trabajador.
+
+================================================================================
+
+[CHUNK_09 — Acto 3: Anatomía del fenómeno — 03:20–03:50 — 30 seg]
+
+Con ese impuesto, Ciudad de México financia su Metro, su Metrobús y sus servicios sociales.
+Los MISMOS servicios que los trabajadores mexiquenses no pueden usar fácilmente, [...]
+porque el Metro de Ciudad de México tiene ciento noventa y cinco estaciones,
+y NINGUNA cruza hacia el Estado de México. [...]
+La red de transporte masivo termina EXACTAMENTE en la frontera política.
+
+================================================================================
+
+[CHUNK_10 — Acto 3: Anatomía del fenómeno — 03:50–04:20 — 30 seg]
+
+Mientras tanto, [...]
+el municipio que envía esos trabajadores,
+Ecatepec de Morelos, un millón setecientos mil habitantes,
+tiene el cuarenta y tres punto cinco por ciento de su población en situación de POBREZA. [...]
+Casi OCHOCIENTAS MIL personas.
+Es el SEGUNDO municipio con más pobres en términos absolutos en todo México.
+Y es, al mismo tiempo,
+uno de los principales proveedores de fuerza laboral de la capital.
+
+================================================================================
+
+[CHUNK_11 — Acto 4: Tensión y contradicción — 04:20–05:00 — 40 seg]
+
+Hay un argumento en contra. [...]
+El Estado de México también cobra su propio Impuesto Sobre Nóminas.
+Y los trabajadores que viven ahí consumen, pagan predial, usan escuelas y hospitales mexiquenses.
+La economía no es de un solo sentido. [...]
+Pero hay una diferencia ESTRUCTURAL.
+La tasa en Ciudad de México es del CUATRO por ciento.
+En el Estado de México ronda el dos o el tres. [...]
+El trabajo de mayor valor agregado paga más impuesto.
+Y ese impuesto se lo queda quien lo aloja en su territorio: la CAPITAL.
+
+================================================================================
+
+[CHUNK_12 — Acto 4: Tensión y contradicción — 05:00–05:35 — 35 seg]
+
+El contraargumento más honesto es otro: [...]
+nadie obliga a vivir en el Estado de México.
+Las personas ELIGEN dónde vivir.
+Pero esa elección tiene un contexto. [...]
+El precio de una vivienda en Ciudad de México puede ser entre tres y CINCO VECES mayor
+que en los municipios periféricos.
+La periferia no es una elección LIBRE. [...]
+Es el resultado de un mercado de suelo que expulsa a quienes SOSTIENEN la economía del centro.
+
+================================================================================
+
+[CHUNK_13 — Acto 5: Implicación abierta — 05:35–06:05 — 30 seg]
+
+Hay un número que no existe todavía. [...]
+Nadie ha calculado cuánto del Impuesto Sobre Nóminas de Ciudad de México
+proviene de trabajadores que viven en el Estado de México. [...]
+Ese cálculo es posible cruzando los datos del Instituto Mexicano del Seguro Social
+con la Encuesta Origen Destino. [...]
+Pero ningún gobierno lo ha pedido.
+Y ningún presupuesto lo ha considerado.
+
+================================================================================
+
+[CHUNK_14 — Acto 5: Implicación abierta — 06:05–06:30 — 25 seg]
+
+Quizás, [...]
+porque calcular ese número obligaría a una pregunta más INCÓMODA: [...]
+si la periferia mexiquense subsidia al centro capitalino, [...]
+¿cuánto le debe la ciudad que se vende como motor de México,
+a la que vive al otro lado de su frontera invisible?
+
+================================================================================
+FIN DEL SCRIPT
+Total: 14 chunks | ~820 palabras | 6:30 min estimado
