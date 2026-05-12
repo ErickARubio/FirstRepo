@@ -62,7 +62,7 @@ Ecatepec de Morelos: 1.7 millones de habitantes. Uno de los municipios con mayor
 La ZMVM no solo extrae trabajo de la periferia: extrae trabajo de la periferia pobre. Los costos de reproducción social de esa fuerza laboral (escuelas, hospitales, agua, pavimentación) los asume el municipio con las finanzas más débiles del sistema.
 
 - **Implicación para el video:** El argumento del "subsidio" se vuelve irrefutable cuando se mapea la pobreza de los municipios expulsores contra la riqueza del territorio receptor. Mapa coroplético de alta carga narrativa.
-- **Fuente:** CONEVAL 2023; CONAPO
+- **Fuente:** CONEVAL 2020; CONAPO
 - **Estado:** Verificado
 
 ---

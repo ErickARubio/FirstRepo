@@ -140,6 +140,29 @@
 
 ---
 
+## Fuentes Tier 2 — Think Tanks y Análisis de Política
+
+### F13 — México Evalúa: Eliminación del Fondo Metropolitano
+- **Institución:** México Evalúa (centro de investigación de políticas públicas independiente)
+- **Tier:** 2
+- **URL portal:** https://www.mexicoevalua.org/
+- **URL específica:** Pendiente de localizar — buscar "Fondo Metropolitano" en buscador del sitio
+- **Relevancia:** Documenta la eliminación del Fondo Metropolitano del Presupuesto de Egresos de la Federación a partir de 2020 y la ausencia de mecanismos federales de coordinación metropolitana para la ZMVM. Citado en H6 y cronología.
+- **Cita en el texto:** "México Evalúa, 2024" — la publicación es de 2024 con análisis retrospectivo del período 2018-2024
+- **Estado:** Cita verificable, URL específica del análisis pendiente de localizar antes de publicación
+
+---
+
+### F14 — Presupuesto de Egresos de la Federación (PEF) histórico
+- **Institución:** Secretaría de Hacienda y Crédito Público (SHCP)
+- **Tier:** 1A
+- **URL portal:** https://www.pef.hacienda.gob.mx/
+- **URL histórica:** https://www.transparenciapresupuestaria.gob.mx/
+- **Relevancia:** Permite verificar la existencia y montos del Fondo Metropolitano en los PEF 2000-2019, y su ausencia desde el PEF 2020. Citado en H6 y en la cronología (año 2000: "Se establece el Fondo Metropolitano en el PEF" y año 2020: "Eliminación del Fondo Metropolitano").
+- **Estado:** Fuente primaria pública — datos disponibles sin restricción
+
+---
+
 ## Datasets prioritarios a descargar
 
 | # | Nombre | Institución | URL | Variables | Visualización destino |

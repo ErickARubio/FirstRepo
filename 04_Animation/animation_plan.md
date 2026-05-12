@@ -273,7 +273,7 @@
 | Counter "43.5% en pobreza" | 03:58 | count-up 0→43.5, 1500ms, ease-out expo | 04:10 |
 | Counter "786,000 personas" | 04:02 | count-up 0→786000, 1500ms | 04:10 |
 | Texto "2° municipio más pobre de México" | 04:06 | fade + slide-up, 500ms | 04:20 |
-| Fuente "CONEVAL 2023" | 03:51 | fade, 300ms | 04:20 |
+| Fuente "CONEVAL 2020" | 03:51 | fade, 300ms | 04:20 |
 
 #### Animación de salida
 - **Tipo:** Fade a negro, 700ms — fin del Acto 3, inicio del Acto 4
@@ -402,7 +402,7 @@
 - [ ] M03 — MAP expansión urbana ZMVM décadas (Esc. 4) — INEGI uso de suelo histórico
 - [ ] M04 — MAP-FLOW ZMVM diurno detallado (Esc. 6) — EOD 2017 + shapefile ZMVM
 - [ ] M05 — MAP esquemático Metro CDMX + límite (Esc. 9) — STC Metro GeoJSON + shapefile ZMVM
-- [ ] M06 — MAP-COR pobreza municipal ZMVM (Esc. 10) — CONEVAL 2023 + shapefile municipal
+- [ ] M06 — MAP-COR pobreza municipal ZMVM (Esc. 10) — CONEVAL 2020 + shapefile municipal
 - [ ] M07 — MAP-COR precios vivienda ZMVM (Esc. 12) — SHF / INFONAVIT
 
 ### Gráficos

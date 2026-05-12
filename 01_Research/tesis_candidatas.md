@@ -42,7 +42,7 @@
 **Datos clave:**
 - La EOD 2017 registra 7.77 millones de viajes diarios entre Edomex y CDMX (22.5% de 34.5M) — Fuente: INEGI, EOD 2017
 - El tiempo promedio de traslado entre zona conurbada y CDMX es 85 minutos; en zonas periféricas puede superar 3 horas cada sentido — Fuente: SEMOVI, Diagnóstico PIM 2019; ONU-Habitat
-- Ecatepec (1.7M hab., 43.5% en pobreza) es uno de los principales municipios expulsores de fuerza laboral hacia CDMX — Fuente: CONEVAL 2023; CONAPO
+- Ecatepec (1.7M hab., 43.5% en pobreza) es uno de los principales municipios expulsores de fuerza laboral hacia CDMX — Fuente: CONEVAL 2020; CONAPO
 - Los servicios representan el 83.5% del PIB capitalino (4.7 billones de pesos en 2023) — Fuente: INEGI, PIBE 2023
 - Trabajadores de la periferia ZMVM inician sus viajes entre las 4:00 y 6:00 AM — Fuente: SEMOVI, Diagnóstico técnico de movilidad 2019
 

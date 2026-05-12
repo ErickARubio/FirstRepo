@@ -271,7 +271,7 @@ Se queda con el producto               Se queda con los costos
 ### Escena 10 — Mapa de pobreza municipal
 
 **Tipo:** MAP-COR + COUNTER animado
-**Descripción:** Mapa coroplético de municipios de la ZMVM, variable porcentaje de población en pobreza (CONEVAL 2023). El contraste visual entre Ecatepec/Neza (rojo oscuro) y alcaldías de CDMX (tono claro) es el argumento.
+**Descripción:** Mapa coroplético de municipios de la ZMVM, variable porcentaje de población en pobreza (CONEVAL 2020). El contraste visual entre Ecatepec/Neza (rojo oscuro) y alcaldías de CDMX (tono claro) es el argumento.
 
 **Región:** ZMVM (zoom que excluya municipios periféricos de baja densidad demográfica)
 **Variable mapeada:** % de población en situación de pobreza, 2023
