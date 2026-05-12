@@ -33,23 +33,24 @@ def test_elevenlabs() -> tuple[bool, str]:
     if not key:
         return False, "FALTA ELEVENLABS_API_KEY en .env"
     try:
+        # /v1/voices no requiere permiso user_read — funciona con cualquier key valida
         r = httpx.get(
-            "https://api.elevenlabs.io/v1/user/subscription",
+            "https://api.elevenlabs.io/v1/voices",
             headers={"xi-api-key": key},
             timeout=8,
         )
         if r.status_code == 200:
-            data = r.json()
-            chars_used  = data.get("character_count", "?")
-            chars_limit = data.get("character_limit", "?")
-            chars_left  = (chars_limit - chars_used) if isinstance(chars_limit, int) else "?"
-            return True, f"Cuota disponible: {chars_left:,} chars / {chars_limit:,}"
+            voices = r.json().get("voices", [])
+            return True, f"Conectado — {len(voices)} voces disponibles"
         elif r.status_code == 401:
-            return False, "API key inválida (401 Unauthorized)"
+            detail = r.json().get("detail", {})
+            if isinstance(detail, dict) and detail.get("status") == "missing_permissions":
+                return True, "Conectado (key valida, scope limitado)"
+            return False, "API key invalida (401)"
         else:
             return False, f"Error {r.status_code}"
     except httpx.TimeoutException:
-        return False, "Timeout — sin conexión o servidor lento"
+        return False, "Timeout"
     except Exception as e:
         return False, str(e)
 
@@ -130,16 +131,18 @@ def test_inegi() -> tuple[bool, str]:
     if not token:
         return False, "FALTA INEGI_TOKEN en .env"
     try:
-        # Indicador 6200093066 = PIB nacional — indicador público de prueba
+        # Indicador 1002000001 = Poblacion total — banco BISE, area 00 (nacional)
         url = (
             f"https://www.inegi.org.mx/app/api/indicadores/desarrolladores/"
-            f"jsonxml/INDICATOR/6200093066/es/0700/false/BIE/2.0/{token}?type=json"
+            f"jsonxml/INDICATOR/1002000001/es/00/false/BISE/2.0/{token}?type=json"
         )
         r = httpx.get(url, timeout=10)
         if r.status_code == 200:
-            return True, "Conectado (indicador PIB OK)"
+            return True, "Conectado (indicador poblacion OK)"
         elif r.status_code == 400:
-            return False, "Token inválido o mal formado"
+            return False, f"Error de consulta: {r.text[:80]}"
+        elif r.status_code == 401:
+            return False, "Token invalido (401)"
         else:
             return False, f"Error {r.status_code}"
     except httpx.TimeoutException:
@@ -203,16 +206,18 @@ TESTS = [
 
 
 def run_all_tests():
-    print("\n" + "═" * 60)
-    print("  Test de conexiones — Video-Ensayos Cartográficos")
-    print("═" * 60)
+    SEP  = "=" * 60
+    SEP2 = "-" * 60
+    print("\n" + SEP)
+    print("  Test de conexiones - Video-Ensayos Cartograficos")
+    print(SEP)
 
     results = []
     for name, var, tester, required in TESTS:
         print(f"\n  Probando {name}...", end=" ", flush=True)
         ok, detail = tester()
         req_tag = " [REQUERIDA]" if required and not ok else ""
-        icon = "✅" if ok else "❌"
+        icon = "[OK]" if ok else "[--]"
         print(f"\r  {icon}  {name:<15} {detail}{req_tag}")
         results.append((name, ok, required))
 
@@ -221,17 +226,17 @@ def run_all_tests():
     ok_count = sum(1 for _, ok, _ in results if ok)
     req_fail = [(n, r) for n, ok, r in results if not ok and r]
 
-    print("\n" + "─" * 60)
+    print("\n" + SEP2)
     print(f"  {ok_count} de {total} APIs configuradas correctamente.")
 
     if req_fail:
-        print(f"\n  ⚠️  {len(req_fail)} credencial(es) REQUERIDA(S) faltante(s):")
+        print(f"\n  ATENCION: {len(req_fail)} credencial(es) REQUERIDA(S) faltante(s):")
         for name, _ in req_fail:
-            print(f"     → Registrarte en {name} (ver CREDENTIALS_GUIDE.md)")
+            print(f"     -> Registrarte en {name} (ver CREDENTIALS_GUIDE.md)")
 
     if ok_count == total:
-        print("\n  🚀 Todo listo. Puedes conectar los clientes de API.")
-    print("═" * 60 + "\n")
+        print("\n  LISTO. Puedes conectar los clientes de API.")
+    print(SEP + "\n")
 
 
 if __name__ == "__main__":

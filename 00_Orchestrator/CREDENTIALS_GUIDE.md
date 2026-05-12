@@ -159,9 +159,15 @@ Unsplash **requiere atribución** en el video o descripción: "Foto por [Nombre]
 - Acceso a todos los indicadores del BIE (Banco de Información Económica): PIB, empleo, demografía, precios, etc.
 
 ### Datos clave para este proyecto
-- Indicador `6200093066` — PIB Nacional (verificación)
-- Indicador `6207020032` — Población total por entidad
+- Indicador `1002000001` — Población total (banco `BISE`, área `00` nacional)
+- Indicador `444319` — Remesas familiares (banco `BISE`)
 - Censos de Población — requiere descarga directa, no API
+
+### Formato de URL correcto
+```
+https://www.inegi.org.mx/app/api/indicadores/desarrolladores/jsonxml/INDICATOR/{id}/es/00/false/BISE/2.0/{token}?type=json
+```
+Nota: usar `BISE` (no `BIE`) y área `00` para indicadores nacionales.
 
 ---
 
