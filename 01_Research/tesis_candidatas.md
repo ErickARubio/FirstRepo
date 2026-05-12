@@ -7,7 +7,7 @@
 
 ## Tesis 1: El impuesto que no regresa — el ISN como transferencia silenciosa
 
-**Enunciado:** Ciudad de México recauda el impuesto sobre nóminas de aproximadamente 3 millones de trabajadores que viven en el Estado de México, financiando servicios urbanos capitalinos con trabajo mexiquense que no recibe esos beneficios.
+**Enunciado:** Ciudad de México recauda el impuesto sobre nóminas de millones de trabajadores que viven en el Estado de México, financiando servicios urbanos capitalinos con trabajo mexiquense que no recibe esos beneficios.
 
 **Gancho contraintuitivo:** Cada que un empleador de la Cuauhtémoc paga su nómina, parte de ese pago va al erario de CDMX —aunque la mitad de sus trabajadores salieron a las 5 AM de Ecatepec. Ciudad de México cobra el impuesto del trabajo que hace funcionar su economía de servicios, pero ese trabajo fue producido, dormido y sostenido en otro estado.
 
@@ -91,3 +91,9 @@
 - Los datos de gobernanza son cualitativos y requieren contraste institucional
 - El mapa de "zonas sin Metro" es potente pero requiere trabajo cartográfico
 - Riesgo de que la narrativa derive en denuncia política en lugar de análisis estructural
+
+---
+
+## Nota editorial sobre H-05 (2026-05-10)
+
+La estimación de "3 millones de trabajadores mexiquenses que cruzan a CDMX diariamente" se removió de la tesis y del guion por no contar con fuente pública verificable. Es una estimación derivada del cruce metodológico EOD 2017 + IMSS, identificada en findings.md como "hallazgo potencial pendiente de cálculo propio". Si en el futuro se realiza ese cálculo con metodología documentada, podrá incorporarse en piezas posteriores o en material complementario.
