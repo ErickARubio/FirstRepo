@@ -18,6 +18,8 @@ Flujo:
 import sys
 import re
 import time
+import urllib.request
+import urllib.parse
 from pathlib import Path
 from typing import Dict, Tuple, Optional
 
@@ -45,7 +47,7 @@ OUTPUT_DIR        = ROOT / "03_Assets" / "ai_generated"
 # Primario:  Imagen 4 — mejor calidad disponible
 # Fallback:  Gemini 2.5 Flash imagen — si Imagen 4 falla
 MODEL_IMAGEN  = "imagen-4.0-generate-001"
-MODEL_GEMINI  = "gemini-2.5-flash-image"
+MODEL_GEMINI  = "gemini-3.1-flash-image-preview"
 
 BRAND_IDENTITY = {
     "style":     "Bloomberg Originals, The Economist Films, editorial data visualization",
@@ -65,20 +67,28 @@ def parse_visual_brief(brief_path: Path) -> Dict:
     content = brief_path.read_text(encoding="utf-8")
     visuals = {}
 
-    pattern = r"### ESCENA (\d+)[^\n]*\n(.*?)(?=### ESCENA|\Z)"
-    for match in re.finditer(pattern, content, re.DOTALL):
-        num     = int(match.group(1))
-        body    = match.group(2)
+    # Formato real del brief: "### Escena N — Título" (minúsculas, sin ESCENA)
+    pattern = r"### Escena (\d+)[^\n]*\n(.*?)(?=### Escena |\Z)"
+    for match in re.finditer(pattern, content, re.DOTALL | re.IGNORECASE):
+        num  = int(match.group(1))
+        body = match.group(2)
 
-        tipo_m  = re.search(r"\*\*Tipo visual:\*\*\s*(.*?)\n", body)
+        tipo_m  = re.search(r"\*\*Tipo:\*\*\s*(.*?)\n", body)
         desc_m  = re.search(r"\*\*Descripci[oó]n:\*\*\s*(.*?)\n", body)
-        prompt_m = re.search(r"\*\*Prompt IA:\*\*\s*(.*?)\n", body)
+        # El prompt está en un bloque de código después de "**Prompt para Google Imagen 4..."
+        prompt_m = re.search(
+            r"\*\*Prompt para Google Imagen 4[^*]*\*\*\s*\n```[^\n]*\n(.*?)\n```",
+            body, re.DOTALL
+        )
+        # person_generation viene del campo **Parámetros:**
+        person_m = re.search(r"person_generation\s*[`']?(\w+)[`']?", body)
 
         visuals[num] = {
-            "type":        tipo_m.group(1).strip()   if tipo_m   else "conceptual",
-            "description": desc_m.group(1).strip()   if desc_m   else "",
-            "prompt_ia":   prompt_m.group(1).strip() if prompt_m else "",
-            "raw":         body,
+            "type":              tipo_m.group(1).strip()   if tipo_m   else "conceptual",
+            "description":       desc_m.group(1).strip()   if desc_m   else "",
+            "prompt_ia":         prompt_m.group(1).strip() if prompt_m else "",
+            "person_generation": person_m.group(1).strip() if person_m else "dont_allow",
+            "raw":               body,
         }
 
     return visuals
@@ -101,7 +111,7 @@ def build_prompt(visual: Dict) -> str:
 
 # --- GENERACION CON GOOGLE IMAGEN 3 ------------------------------------------
 
-def generate_with_imagen(client, prompt: str, scene_num: int) -> Optional[Path]:
+def generate_with_imagen(client, prompt: str, scene_num: int, person_generation: str = "dont_allow") -> Optional[Path]:
     """Genera imagen con Imagen 4 (mejor calidad disponible, aspecto 16:9)."""
     try:
         response = client.models.generate_images(
@@ -110,8 +120,8 @@ def generate_with_imagen(client, prompt: str, scene_num: int) -> Optional[Path]:
             config=gtypes.GenerateImagesConfig(
                 number_of_images=1,
                 aspect_ratio="16:9",
-                safety_filter_level="block_only_high",
-                person_generation="dont_allow",
+                safety_filter_level="block_low_and_above",
+                person_generation=person_generation,
             ),
         )
         if not response.generated_images:
@@ -154,12 +164,35 @@ def generate_with_gemini_flash(client, prompt: str, scene_num: int) -> Optional[
         return None
 
 
-def generate_image(client, prompt: str, scene_num: int) -> Optional[Path]:
-    """Intenta Imagen 4 primero, luego Gemini 2.5 Flash como fallback."""
-    path = generate_with_imagen(client, prompt, scene_num)
+def generate_with_pollinations(prompt: str, scene_num: int) -> Optional[Path]:
+    """Fallback gratuito: Pollinations.ai con modelo Flux. Sin API key."""
+    try:
+        encoded = urllib.parse.quote(prompt)
+        url = (
+            f"https://image.pollinations.ai/prompt/{encoded}"
+            f"?width=1920&height=1080&model=flux&nologo=true&enhance=true"
+        )
+        out = OUTPUT_DIR / f"scene_{scene_num:02d}_generated.png"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            out.write_bytes(resp.read())
+        return out
+    except Exception as e:
+        print(f"(Pollinations.ai fallo: {e})")
+        return None
+
+
+def generate_image(client, prompt: str, scene_num: int, person_generation: str = "dont_allow") -> Optional[Path]:
+    """Cadena de fallbacks: Imagen 4 -> Gemini Flash -> Pollinations.ai (gratis)."""
+    path = generate_with_imagen(client, prompt, scene_num, person_generation)
     if path:
         return path
-    return generate_with_gemini_flash(client, prompt, scene_num)
+    path = generate_with_gemini_flash(client, prompt, scene_num)
+    if path:
+        return path
+    print("(intentando Pollinations.ai — gratis, sin API key)")
+    return generate_with_pollinations(prompt, scene_num)
 
 
 # --- POST-PROCESADO ----------------------------------------------------------
@@ -199,14 +232,11 @@ def validate(img_path: Path) -> Tuple[bool, str]:
 
 # --- TIPOS QUE REQUIEREN IA --------------------------------------------------
 
-TIPOS_IA = {
-    "conceptual", "illustration", "background", "fondo",
-    "mapa", "map", "diagrama", "diagram",
-}
-
 def requiere_ia(visual: Dict) -> bool:
+    """Solo escenas IMG-DOC con prompt para Google Imagen 4 requieren generación IA."""
     tipo = visual.get("type", "").lower()
-    return any(t in tipo for t in TIPOS_IA)
+    raw  = visual.get("raw", "").lower()
+    return "img-doc" in tipo and "google imagen" in raw and bool(visual.get("prompt_ia"))
 
 
 # --- RUNNER ------------------------------------------------------------------
@@ -251,7 +281,8 @@ def run():
         prompt = build_prompt(visual)
         print(f"  Escena {num:02d} ({visual['type']})...", end=" ", flush=True)
 
-        img_path = generate_image(client, prompt, num)
+        person_gen = visual.get("person_generation", "dont_allow")
+        img_path = generate_image(client, prompt, num, person_gen)
 
         if img_path:
             is_ok, msg = validate(img_path)

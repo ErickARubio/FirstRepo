@@ -35,6 +35,7 @@ from tools.config import get_credential  # noqa
 SCRIPT_FILE = ROOT / "02_Script" / "script_for_elevenlabs.txt"
 OUTPUT_DIR  = ROOT / "03_Assets" / "audio"
 VOICE_NAME  = sys.argv[1] if len(sys.argv) > 1 else "Rachel"
+CHUNK_ONLY  = int(sys.argv[2]) if len(sys.argv) > 2 else None  # ej: voice_gen.py Rachel 1
 MODEL_ID    = "eleven_multilingual_v2"
 
 # ─── PARSER DEL SCRIPT ─────────────────────────────────────────────────────────
@@ -186,10 +187,12 @@ def run():
         print(f"\n  Error: no se encontro {SCRIPT_FILE}")
         sys.exit(1)
 
-    chunks     = parse_chunks(SCRIPT_FILE)
+    all_chunks = parse_chunks(SCRIPT_FILE)
+    chunks     = [c for c in all_chunks if CHUNK_ONLY is None or c["number"] == CHUNK_ONLY]
     total_chars = sum(c["chars"] for c in chunks)
 
-    print(f"\n  Script cargado: {len(chunks)} chunks  |  {total_chars} chars totales")
+    scope = f"chunk {CHUNK_ONLY:02d}" if CHUNK_ONLY else f"{len(chunks)} chunks"
+    print(f"\n  Script cargado: {scope}  |  {total_chars} chars")
     print(f"  Cuota plan gratuito ElevenLabs: 10,000 chars/mes")
     if total_chars > 10000:
         print(f"  ADVERTENCIA: {total_chars} chars supera el plan gratuito")
