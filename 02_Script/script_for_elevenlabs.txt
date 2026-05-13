@@ -1,176 +1,186 @@
-EL IMPUESTO QUE NO REGRESA
+LA GEOGRAFÍA INVISIBLE DEL SUBSIDIO MIGRANTE
 Script para síntesis de voz — ElevenLabs
-Proyecto: 2026-05-edomex-cdmx | Voz: Mateo (es-MX) | Modelo: eleven_multilingual_v2
-Velocidad: 0.90 | Stability: 0.55 | Similarity: 0.75 | Style: 0.30
-Duración estimada: 6:30
+Proyecto: 2026-05-remesas-mx | Modelo: eleven_multilingual_v2
+Speed: 0.90 | Stability: 0.55 | Similarity: 0.75 | Style: 0.30
+Duración estimada: 6:30 | Caracteres estimados: ~4,800
 
 INSTRUCCIONES DE LECTURA:
   [...]  = pausa dramática (1.5-2 segundos)
   MAYÚSCULAS = énfasis de peso (no gritar, solo marcar)
-  Comas y puntos ya incorporan pausas naturales según ElevenLabs.
-  Generar chunk por chunk, no el texto completo de una vez.
+  Comas y puntos incorporan pausas naturales según ElevenLabs.
+  Generar chunk por chunk — nunca el texto completo de una vez.
+  Chunk 11: usar speed=0.85, stability=0.48
 
 ================================================================================
 
-[CHUNK_01 — Acto 1: Gancho — 00:00–00:15 — 15 seg]
+[CHUNK_01 — Acto 1: Gancho — 00:00–00:45 — 45 seg — Escenas 1 y 2]
 
-Cada lunes, millones de personas cruzan una frontera INVISIBLE
-entre el Estado de México y Ciudad de México.
-Nadie la celebra.
-Nadie la gobierna. [...]
-Pero la economía de la ciudad más grande del país funciona GRACIAS a ella.
+Cada año, los mexicanos que viven en Estados Unidos
+envían más dinero a México que TODO el petróleo que el país extrae del suelo.
+En dos mil veinticuatro: sesenta y siete mil millones de dólares. [...]
+Más que toda la inversión extranjera directa.
+Más que el turismo.
+La MAYOR fuente de divisas de la segunda economía de América Latina.
 
-================================================================================
-
-[CHUNK_02 — Acto 1: Gancho — 00:15–00:45 — 30 seg]
-
-Hay un mecanismo fiscal que casi nadie conoce.
-Se llama Impuesto Sobre Nóminas. [...]
-Cada empresa con domicilio en Ciudad de México paga CUATRO pesos de cada cien de nómina
-al gobierno capitalino.
-Ese impuesto financia el Metro, el Metrobús y los servicios de la ciudad.
-Y lo paga también, por los trabajadores que viven en el Estado de México. [...]
-Trabajadores que regresan cada noche a una ciudad DIFERENTE.
+Pero si buscas en el mapa dónde llega ese dinero,
+verás siempre los mismos estados: Michoacán, Guanajuato, Jalisco, Guerrero.
+Los MISMOS de hace sesenta años. [...]
+Y si buscas los estados con menor crecimiento económico,
+la lista es casi IDÉNTICA.
+Eso no es una casualidad. [...]
+Es una trampa.
 
 ================================================================================
 
-[CHUNK_03 — Acto 2: Contexto histórico — 00:45–01:05 — 20 seg]
+[CHUNK_02 — Acto 2: Contexto histórico — 00:45–01:40 — 55 seg — Escenas 3 y 4]
 
-Ciudad de México genera el catorce punto ocho por ciento
-del producto interno bruto NACIONAL. [...]
-Más que toda la industria automotriz del país.
-Y el ochenta y tres punto cinco por ciento de ese producto viene del sector SERVICIOS:
-oficinas, restaurantes, comercio, finanzas, gobierno.
+Todo empieza en mil novecientos cuarenta y dos.
+Estados Unidos necesitaba trabajadores para sus campos agrícolas durante la Segunda Guerra Mundial.
+México tenía hombres que necesitaban empleo. [...]
+El Programa Bracero movió a cuatro millones y medio de mexicanos,
+casi todos de Michoacán, Guanajuato y Jalisco,
+a California, Texas e Illinois, durante veintidós años.
+Trabajaron.
+Mandaron dinero.
+Formaron redes.
 
-================================================================================
-
-[CHUNK_04 — Acto 2: Contexto histórico — 01:05–01:30 — 25 seg]
-
-Esos servicios necesitan PERSONAS.
-Pero vivir en Ciudad de México es caro.
-Desde los años setenta y ochenta,
-la expansión urbana del Estado de México absorbió a millones de familias
-que no podían pagar la ciudad que SERVÍAN. [...]
-Ecatepec pasó de cuatrocientos mil habitantes en mil novecientos setenta,
-a un millón setecientos mil hoy.
-
-================================================================================
-
-[CHUNK_05 — Acto 2: Contexto histórico — 01:30–01:50 — 20 seg]
-
-Se construyó así un sistema IMPLÍCITO: [...]
-la capital produce el empleo, y se queda con el producto.
-La periferia produce los trabajadores, y se queda con los costos. [...]
-Nadie diseñó este arreglo.
-Pero lleva CINCUENTA años funcionando.
+El programa terminó en mil novecientos sesenta y cuatro. [...]
+Los circuitos, NO.
+Las redes de paisanos, los destinos de trabajo, las rutas de cruce:
+todo se calcificó en esas dos décadas. [...]
+Hoy, SESENTA AÑOS después,
+los estados que más migrantes envían son los MISMOS.
+Las ciudades que más los reciben en Estados Unidos son las MISMAS.
+La geografía se REPITE.
 
 ================================================================================
 
-[CHUNK_06 — Acto 3: Anatomía del fenómeno — 01:50–02:20 — 30 seg]
+[CHUNK_03 — Acto 2: Contexto — 01:40–02:00 — 20 seg — Escena 5]
 
-El número es este: [...]
-siete millones... setecientos setenta mil viajes DIARIOS,
-entre el Estado de México y Ciudad de México.
-Eso documenta la Encuesta Origen Destino del Instituto Nacional de Estadística y Geografía,
-del año dos mil diecisiete. [...]
-El veintidós punto cinco por ciento de todos los desplazamientos metropolitanos cruzan esa frontera.
-El principal motivo declarado: el TRABAJO.
-
-================================================================================
-
-[CHUNK_07 — Acto 3: Anatomía del fenómeno — 02:20–02:50 — 30 seg]
-
-El tiempo promedio de ese viaje es OCHENTA Y CINCO MINUTOS. [...]
-En zonas más alejadas de la periferia, puede superar tres horas por sentido.
-Un trabajador que entra a las nueve de la mañana al Centro Histórico desde Ecatepec,
-sale de su casa a las cinco y media. [...]
-Son CATORCE HORAS fuera de casa.
-Ningún presupuesto público contabiliza ese costo.
+Las familias que dependen hoy del dinero de los migrantes son,
+en muchos casos, literalmente los NIETOS de los braceros. [...]
+México construyó, sin planearlo, una economía paralela de transferencias.
+Con su propia geografía.
+Sus propias reglas.
+Y sus propias consecuencias no planeadas.
 
 ================================================================================
 
-[CHUNK_08 — Acto 3: Anatomía del fenómeno — 02:50–03:20 — 30 seg]
+[CHUNK_04 — Acto 3: Anatomía — 02:00–02:30 — 30 seg — Escena 6]
 
-Y aquí está el mecanismo: [...]
-el Impuesto Sobre Nóminas se aplica en el territorio donde se TRABAJA,
-no donde se VIVE. [...]
-Las empresas de Ciudad de México pagan cuatro por ciento de su nómina al gobierno capitalino,
-independientemente de si sus empleados duermen en la Condesa, o en Chimalhuacán.
-El impuesto sigue al TRABAJO. [...]
-No al trabajador.
-
-================================================================================
-
-[CHUNK_09 — Acto 3: Anatomía del fenómeno — 03:20–03:50 — 30 seg]
-
-Con ese impuesto, Ciudad de México financia su Metro, su Metrobús y sus servicios sociales.
-Los MISMOS servicios que los trabajadores mexiquenses no pueden usar fácilmente, [...]
-porque el Metro de Ciudad de México tiene ciento noventa y cinco estaciones,
-y NINGUNA cruza hacia el Estado de México. [...]
-La red de transporte masivo termina EXACTAMENTE en la frontera política.
+¿Adónde va ese dinero cuando llega? [...]
+La Encuesta Nacional de Ingresos y Gastos de los Hogares nos da la respuesta.
+Los hogares que reciben remesas destinan la MAYOR PARTE a consumo básico:
+alimentos, renta, servicios de salud, educación elemental. [...]
+No es que las familias sean irracionales.
+Es que el dinero llega para cubrir exactamente
+lo que el Estado NO provee en esas regiones.
 
 ================================================================================
 
-[CHUNK_10 — Acto 3: Anatomía del fenómeno — 03:50–04:20 — 30 seg]
+[CHUNK_05 — Acto 3: Anatomía — 02:30–03:00 — 30 seg — Escena 7]
 
-Mientras tanto, [...]
-el municipio que envía esos trabajadores,
-Ecatepec de Morelos, un millón setecientos mil habitantes,
-tiene el cuarenta y tres punto cinco por ciento de su población en situación de POBREZA. [...]
-Casi OCHOCIENTAS MIL personas.
-Es el SEGUNDO municipio con más pobres en términos absolutos en todo México.
-Y es, al mismo tiempo,
-uno de los principales proveedores de fuerza laboral de la capital.
-
-================================================================================
-
-[CHUNK_11 — Acto 4: Tensión y contradicción — 04:20–05:00 — 40 seg]
-
-Hay un argumento en contra. [...]
-El Estado de México también cobra su propio Impuesto Sobre Nóminas.
-Y los trabajadores que viven ahí consumen, pagan predial, usan escuelas y hospitales mexiquenses.
-La economía no es de un solo sentido. [...]
-Pero hay una diferencia ESTRUCTURAL.
-La tasa en Ciudad de México es del CUATRO por ciento.
-En el Estado de México ronda el dos o el tres. [...]
-El trabajo de mayor valor agregado paga más impuesto.
-Y ese impuesto se lo queda quien lo aloja en su territorio: la CAPITAL.
+Los estudios basados en esa encuesta muestran
+que entre el CINCO y el QUINCE por ciento
+del ingreso por remesas se destina a ahorro o inversión productiva. [...]
+El resto cubre la brecha entre lo que el mercado local ofrece
+y lo que una familia necesita para no caer en pobreza. [...]
+Las remesas no son capital de DESARROLLO.
+Son el precio de vivir donde el Estado decidió NO invertir.
 
 ================================================================================
 
-[CHUNK_12 — Acto 4: Tensión y contradicción — 05:00–05:35 — 35 seg]
+[CHUNK_06 — Acto 3: Anatomía — 03:00–03:30 — 30 seg — Escena 8]
 
-El contraargumento más honesto es otro: [...]
-nadie obliga a vivir en el Estado de México.
-Las personas ELIGEN dónde vivir.
-Pero esa elección tiene un contexto. [...]
-El precio de una vivienda en Ciudad de México puede ser entre tres y CINCO VECES mayor
-que en los municipios periféricos.
-La periferia no es una elección LIBRE. [...]
-Es el resultado de un mercado de suelo que expulsa a quienes SOSTIENEN la economía del centro.
-
-================================================================================
-
-[CHUNK_13 — Acto 5: Implicación abierta — 05:35–06:05 — 30 seg]
-
-Hay un número que no existe todavía. [...]
-Nadie ha calculado cuánto del Impuesto Sobre Nóminas de Ciudad de México
-proviene de trabajadores que viven en el Estado de México. [...]
-Ese cálculo es posible cruzando los datos del Instituto Mexicano del Seguro Social
-con la Encuesta Origen Destino. [...]
-Pero ningún gobierno lo ha pedido.
-Y ningún presupuesto lo ha considerado.
+Y aquí viene la consecuencia MÁS SILENCIOSA: el efecto de sustitución. [...]
+Cuando el dinero de los migrantes llega con regularidad,
+los gobiernos enfrentan MENOS presión para actuar.
+Las necesidades básicas están cubiertas.
+El descontento se amortigua. [...]
+Los estados con mayor dependencia de remesas muestran
+menor inversión pública en infraestructura por habitante que el promedio nacional. [...]
+Las remesas no solo cubren la ausencia del Estado.
+TAMBIÉN la sostienen.
 
 ================================================================================
 
-[CHUNK_14 — Acto 5: Implicación abierta — 06:05–06:30 — 25 seg]
+[CHUNK_07 — Acto 3: Anatomía — 03:30–04:00 — 30 seg — Escena 9]
 
-Quizás, [...]
-porque calcular ese número obligaría a una pregunta más INCÓMODA: [...]
-si la periferia mexiquense subsidia al centro capitalino, [...]
-¿cuánto le debe la ciudad que se vende como motor de México,
-a la que vive al otro lado de su frontera invisible?
+El circuito de migración no extrae a la gente al AZAR. [...]
+Se lleva a los JÓVENES.
+A los hombres en edad productiva. [...]
+Lo que queda en los pueblos de Michoacán y Guerrero
+son mujeres, niños y adultos mayores.
+La pirámide de edad se INVIERTE. [...]
+La fuerza de trabajo que CONSTRUIRÍA una economía local,
+se fue a construir la economía de OTRO país.
+
+================================================================================
+
+[CHUNK_08 — Acto 3: Anatomía — 04:00–04:30 — 30 seg — Escena 10]
+
+El resultado es un equilibrio TRÁGICO. [...]
+Las remesas son suficientes para evitar el colapso.
+Pero NO para transformar la estructura económica. [...]
+El estado no cae, pero tampoco DESPEGA.
+Y en ese estancamiento, una nueva generación de jóvenes
+ve que las oportunidades locales siguen sin existir, y decide MIGRAR. [...]
+El ciclo vuelve a empezar.
+Sesenta años.
+El MISMO ciclo.
+El MISMO mapa.
+
+================================================================================
+
+[CHUNK_09 — Acto 4: Tensión — 04:30–05:10 — 40 seg — Escena 11]
+
+Aquí está el contraargumento que MERECE ser tomado en serio. [...]
+Sin remesas, esas regiones estarían en CRISIS HUMANITARIA.
+El Banco Mundial documenta que cada dólar de remesas
+reduce la pobreza local con más eficacia
+que muchos programas gubernamentales equivalentes.
+Las remesas financian escuelas rurales, costos médicos, materiales de construcción.
+Han sacado de la pobreza extrema a millones de mexicanos
+que ningún programa de gobierno alcanzó. [...]
+Ese argumento es completamente REAL. [...]
+Y es INSUFICIENTE.
+No porque las remesas sean un problema. [...]
+Sino porque llevan SESENTA AÑOS siendo el ÚNICO plan.
+
+================================================================================
+
+[CHUNK_10 — Acto 4: Tensión — 05:10–05:45 — 35 seg — Escena 12]
+
+El riesgo de depender de un solo mecanismo
+lo conocen bien los ingenieros de sistemas:
+si existe un único PUNTO DE FALLA, el sistema es FRÁGIL. [...]
+El punto de falla de la economía de las remesas no tiene nombre técnico.
+Se llama política migratoria de Estados Unidos.
+Se llama recesión en ese país.
+Se llama deportación masiva. [...]
+Si el flujo se interrumpe, por cualquier razón,
+las regiones más dependientes no tienen ALTERNATIVA.
+Nunca construyeron una.
+Nunca las DEJARON.
+
+================================================================================
+
+[CHUNK_11 — Acto 5: Implicación abierta — 05:45–06:30 — 45 seg — Escenas 13 y 14]
+[PARÁMETROS: speed=0.85, stability=0.48]
+
+En varias comunidades de Michoacán y Oaxaca, algo está cambiando. [...]
+Los jóvenes están migrando MENOS.
+No porque la economía local haya mejorado,
+sino porque cruzar la frontera se volvió MÁS PELIGROSO
+y vivir en Estados Unidos más HOSTIL. [...]
+Las remesas que llegaban están disminuyendo.
+Y las economías locales que NUNCA se construyeron
+todavía no existen para recibirlos. [...]
+
+La pregunta que México no ha querido responder es esta: [...]
+cuando los migrantes ya no puedan, o ya no quieran, mandar el dinero, [...]
+¿quién paga la deuda de SESENTA AÑOS de desarrollo postergado?
 
 ================================================================================
 FIN DEL SCRIPT
-Total: 14 chunks | ~820 palabras | 6:30 min estimado
+Total: 11 chunks | ~901 palabras | ~4,800 caracteres | 6:30 min estimado

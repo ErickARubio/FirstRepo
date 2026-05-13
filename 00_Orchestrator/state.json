@@ -1,10 +1,35 @@
 {
   "schema_version": 2,
-  "current_project": null,
+  "current_project": {
+    "id": "2026-05-remesas-mx",
+    "tema": "Las remesas en México",
+    "fase_actual": 5,
+    "tesis_aprobada": "Tesis 2 — La geografía invisible del subsidio migrante",
+    "checkpoints": {
+      "cp1_tesis": true,
+      "cp2_guion": true,
+      "cp3_visual": true,
+      "cp4_voz": true,
+      "cp5_animacion": true
+    },
+    "archivos_generados": [
+      "01_Research/tesis_candidatas.md",
+      "01_Research/findings.md",
+      "01_Research/sources.md",
+      "02_Script/script_draft.md",
+      "03_Assets/visual_brief.md",
+      "02_Script/voice_brief.md",
+      "02_Script/script_for_elevenlabs.txt",
+      "04_Animation/animation_plan.md",
+      "04_Animation/ae_script.jsx"
+    ],
+    "iniciado": "2026-05-12",
+    "ultima_actualizacion": "2026-05-13"
+  },
   "history": [],
   "settings": {
     "voice_provider": "elevenlabs",
-    "image_provider": "replicate_sdxl",
+    "image_provider": "google_imagen4",
     "target_duration_min": 6,
     "target_duration_max": 7,
     "language": "es-MX",

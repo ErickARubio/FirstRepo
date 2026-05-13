@@ -1,8 +1,7 @@
-# Brief de Voz — El impuesto que no regresa
-
-**Proyecto:** 2026-05-edomex-cdmx
+# Brief de Voz — La geografía invisible del subsidio migrante
+**Proyecto:** 2026-05-remesas-mx
 **Agente:** A4 Director de Voz
-**Fecha:** 2026-05-10
+**Fecha:** 2026-05-13
 **Estado:** Borrador v1.0
 **Input:** script_draft.md v1.0 (aprobado)
 
@@ -12,126 +11,132 @@
 
 | Métrica | Valor |
 |---------|-------|
-| Chunks totales | 14 |
+| Chunks totales | 11 |
 | Duración estimada | 6:30 |
-| Palabras limpias | ~820 |
+| Palabras limpias | ~901 |
 | Velocidad de síntesis | 0.90 (escala ElevenLabs) |
-| Voz recomendada | Mateo (es-MX) |
-| Modelo ElevenLabs | Multilingual v2 |
+| Voz recomendada | Masculino es-MX, tono periodístico profundo |
+| Modelo ElevenLabs | eleven_multilingual_v2 |
+| Caracteres estimados | ~4,800 (dentro del límite gratuito de 10,000/mes) |
 
 ---
 
 ## Perfil de voz seleccionada
 
-### Casting: Mateo (ElevenLabs, es-MX)
+### Casting: voz masculina, periodístico de profundidad, es-MX
 
-**Justificación:** Mateo ofrece un registro periodístico de profundidad — autoritativo sin ser corporativo, cálido sin ser informal. Es el registro del periodismo de largo aliento latinoamericano: el narrador de un documental de investigación, no el locutor de un noticiario. Ideal para contenido analítico de 6 minutos donde el espectador debe confiar en quien habla.
+**Perfil objetivo:** El narrador de un documental económico de investigación — no el locutor de un noticiario, no el presentador de un podcast de negocios. La referencia es el periodismo de largo aliento latinoamericano: Carlos Monsiváis leyendo datos, no un conductor de televisión. Autoritativo, cálido, sin reverencia hacia el poder.
 
-**Alternativas a verificar en el panel ElevenLabs:**
-- Si Mateo no está disponible: buscar voz masculina en es-MX con "journalist", "documentary", "deep" como descriptores
-- Alternativa femenina: Sofia (es-LAT) — verificar disponibilidad; ritmo más ágil, adecuado si se quiere romper con la convención del narrador masculino en economía
+**Cómo seleccionar la voz en el panel ElevenLabs:**
+1. Ir a elevenlabs.io → Voice Library
+2. Filtrar por idioma: `Spanish` o `es-MX` / `es-419`
+3. Buscar descriptores: "documentary", "deep", "journalist", "narrative"
+4. Probar con el Chunk 01 del script antes de producir todos los chunks
+5. Verificar que las pausas `[...]` sean respetadas — si la voz las ignora, ajustar `stability` a 0.60
 
-**Parámetros ElevenLabs recomendados:**
+**Alternativa femenina:** Una voz femenina periodística rompería la convención del narrador masculino en economía — si el usuario prefiere este enfoque, buscar `es-LAT` con descriptor "analytical" o "documentary". El guion funciona igualmente bien con voz femenina.
 
-```json
-{
-  "model_id": "eleven_multilingual_v2",
-  "voice_settings": {
-    "stability": 0.55,
-    "similarity_boost": 0.75,
-    "style": 0.30,
-    "use_speaker_boost": true
-  },
-  "speaking_rate": 0.90
-}
+**Parámetros ElevenLabs:**
+
+```python
+from elevenlabs.types import VoiceSettings
+
+voice_settings = VoiceSettings(
+    stability=0.55,
+    similarity_boost=0.75,
+    style=0.30,
+    use_speaker_boost=True,
+    speed=0.90,
+)
+model_id = "eleven_multilingual_v2"
 ```
 
-**Nota técnica:** Si el chunk de cierre (CHUNK_14) suena demasiado conclusivo, bajar `stability` a 0.45 para esa escena específica — más variabilidad natural en la voz ayuda a la apertura reflexiva que necesita el Acto 5.
+> **Nota técnica SDK v1.x:** El campo es `speed`, no `speaking_rate`. Rango: 0.7 (muy lento) – 1.2 (rápido). Para video-ensayo analítico: 0.85–0.95.
+
+**Para el Chunk 11 (implicación final):** bajar `speed` a 0.85 y `stability` a 0.48 — más variabilidad natural en la voz ayuda al tono reflexivo del cierre.
 
 ---
 
 ## Instrucciones de dirección por acto
 
-### Acto 1 — Gancho (Chunks 01–02, 00:00–00:45)
-**Tono:** Directo, sin reverencia. No es una pregunta retórica — es un hallazgo que se comparte con calma. Algo entre "fíjate en esto" y "nadie te ha contado esto".
-**Velocidad:** Ligeramente más lenta que el resto del video. El dato del ISN necesita espacio para que el espectador entienda el mecanismo antes de que la narración lo procese.
-**Énfasis:** En "INVISIBLE" (Chunk 01) y en "cuatro pesos de cada cien" y "ciudad DIFERENTE" (Chunk 02). No exagerar — el énfasis es de peso, no de drama.
-**Pausas clave:** La pausa después de "Nadie la gobierna" en Chunk 01 es dramática — debe sentirse. La pausa antes de "Trabajadores que regresan..." en Chunk 02 marca el giro emocional.
+### Acto 1 — Gancho (Chunk 01, 00:00–00:45)
+**Tono:** Directo. Sin suspenso artificial. Como si acabaras de revisar un reporte del Banco Mundial y compartes lo que encontraste. No es una pregunta retórica — es un hallazgo.
+**Velocidad:** Ligeramente más lenta que el resto. El número de $67,637 millones necesita espacio. La pausa después de él es dramática.
+**Énfasis:** En "TODO el petróleo", "MAYOR fuente de divisas", "los MISMOS de hace sesenta años", "Es una TRAMPA".
+**Pausa crítica:** La pausa `[...]` después de "sesenta y siete mil millones de dólares" debe sentirse como un beat de 1.5 segundos. Es el momento en que el espectador procesa la escala del número.
 
-### Acto 2 — Contexto histórico (Chunks 03–05, 00:45–01:50)
-**Tono:** Periodístico, objetivo. El narrador establece los hechos. No hay juicio aquí todavía.
-**Velocidad:** Normal. No acelerar. Los números deben aterrizar: "mil novecientos setenta" necesita sus sílabas.
-**Énfasis:** En los puntos de quiebre histórico — "mil novecientos setenta", "cincuenta años". En la paradoja de Chunk 05: "Nadie diseñó este arreglo."
-**Pausa clave:** Después de los dos puntos en Chunk 05 ("un sistema IMPLÍCITO:") — beat de 0.8 segundos antes de enunciar las dos líneas paralelas.
+### Acto 2 — Contexto histórico (Chunks 02–03, 00:45–02:00)
+**Tono:** Periodístico, objetivo. El narrador establece los hechos históricos sin juicio. Los años son puntos de quiebre, no datos de relleno.
+**Velocidad:** Normal en narración histórica. Bajar al leer nombres geográficos: "Mi-choa-cán, Gua-na-jua-to y Ja-lis-co" — darles sus sílabas.
+**Énfasis:** En "Los circuitos, NO" (el giro central del Chunk 02). En "SESENTA AÑOS después" — peso de tiempo. En "NIETOS de los braceros" (Chunk 03).
+**Pausa crítica:** Después de "El programa terminó en mil novecientos sesenta y cuatro." — 1.5 segundos antes de "Los circuitos, NO." Esta pausa hace el contraste.
 
-### Acto 3 — Anatomía (Chunks 06–10, 01:50–04:20)
-**Tono:** Analítico, preciso. Cada oración es una pieza de evidencia. El narrador no opina — describe con exactitud.
-**Velocidad:** Ligeramente más lenta en los datos cuantitativos. Las cifras grandes necesitan espacio entre sílabas para que el cerebro las registre: "siete millones... setecientos setenta mil".
-**Énfasis:** En contrastes y comparaciones. "donde se TRABAJA, no donde se VIVE" (Chunk 08). "NINGUNA cruza hacia el Estado de México" (Chunk 09). "SEGUNDO municipio" (Chunk 10).
-**Pausa clave:** La pausa más larga del Acto 3 es antes de "El impuesto sigue al TRABAJO. [...] No al trabajador." — aquí la separación de ambas oraciones debe sentirse como dos golpes distintos.
+### Acto 3 — Anatomía (Chunks 04–08, 02:00–04:30)
+**Tono:** Analítico, preciso. Cada oración es una pieza de evidencia. El narrador no opina — describe con exactitud quirúrgica.
+**Velocidad:** Ligeramente más lenta en datos cuantitativos. "entre el CINCO y el QUINCE por ciento" — cada número pronunciado con peso. No apresurar.
+**Énfasis:** En los contrastes: "NO provee" (Chunk 04), "TAMBIÉN la sostienen" (Chunk 06), "OTRO país" (Chunk 07), "El MISMO ciclo. El MISMO mapa." (Chunk 08).
+**Pausa crítica:** En Chunk 06, la pausa antes de "TAMBIÉN la sostienen" — el giro de que las remesas no solo tapan la ausencia del Estado sino que la perpetúan — necesita 1.5 segundos de silencio.
 
-### Acto 4 — Tensión y contradicción (Chunks 11–12, 04:20–05:35)
+### Acto 4 — Tensión (Chunks 09–10, 04:30–05:45)
 **Tono:** Más íntimo. El narrador reconoce una complicación genuina, no la descarta. El espectador debe sentir que el video es intelectualmente honesto.
-**Velocidad:** Más lenta que el Acto 3. Las pausas `[...]` importan especialmente aquí.
-**Énfasis:** En "diferencia ESTRUCTURAL" (Chunk 11) y en la paradoja de la "elección libre" (Chunk 12). El énfasis en "LIBRE" en Chunk 12 debe sonar levemente irónico — no burlón, sino revelador.
-**Pausa clave:** Después de "La economía no es de un solo sentido." — pausa de 1 segundo antes del giro "Pero hay una diferencia ESTRUCTURAL."
+**Velocidad:** Más lenta. Los `[...]` importan especialmente aquí. La honestidad del contraargumento necesita su tiempo.
+**Énfasis:** En "completamente REAL" y "ÚNICO plan" (Chunk 09) — el primero con reconocimiento, el segundo con peso crítico. En "PUNTO DE FALLA" y "FRÁGIL" (Chunk 10).
+**Pausa crítica:** En Chunk 09, pausa larga después de "Ese argumento es completamente REAL." — 2 segundos — antes de "Y es INSUFICIENTE." La honestidad intelectual requiere ese espacio.
 
-### Acto 5 — Implicación abierta (Chunks 13–14, 05:35–06:30)
-**Tono:** Reflexivo, abierto. La voz baja un registro. Como si el narrador también se estuviera preguntando esto por primera vez.
-**Velocidad:** La más lenta del video. "Ningún gobierno lo ha pedido. Y ningún presupuesto lo ha considerado." — cada cláusula necesita su propio espacio.
-**Énfasis:** Minimal en Chunk 14. La pregunta final no se enfatiza — se declara con calma. El peso lo carga el silencio después de ella.
-**Pausa crítica:** Antes de la pregunta final ("¿cuánto le debe la ciudad...") — 2 segundos completos de silencio. Es la pausa más larga del video. No recortar.
+### Acto 5 — Implicación abierta (Chunk 11, 05:45–06:30)
+**Tono:** Reflexivo, abierto. La voz baja un registro. Como si el narrador también estuviera procesando la pregunta por primera vez. No concluyente.
+**Velocidad:** La más lenta del video. 0.85 en lugar de 0.90.
+**Énfasis:** Mínimo. La pregunta final no se énfatiza — se declara con calma. El silencio después de ella carga el peso.
+**Pausa crítica:** Antes de "¿quién paga la deuda de SESENTA AÑOS...?" — 2 segundos completos. Es la pausa más larga del video. No recortar.
 
 ---
 
 ## Guía de pronunciación
 
-| Término | Pronunciación correcta | Nota |
-|---------|------------------------|------|
-| INEGI | "i-NE-gi" (no "INEGI" como acrónimo) | Ya expandido como "Instituto Nacional de Estadística y Geografía" en Chunk 06 |
-| IMSS | "i-ME-ese-ese" | Expandido como "Instituto Mexicano del Seguro Social" en Chunk 13 |
-| ISN | Siempre pronunciar como "Impuesto Sobre Nóminas" | No usar la sigla en narración |
-| PIB | Pronunciar letra por letra: "pi-i-be" | Ya expandido como "producto interno bruto" en Chunk 03 |
-| Ecatepec | "e-ca-TE-pec" | Acento en la tercera sílaba |
-| Chimalhuacán | "chi-mal-hua-CÁN" | Acento en última sílaba |
-| Tlalnepantla | "tla-ne-PAN-tla" | No omitir la "tl" inicial |
-| Metrobús | "me-tro-BÚS" | Acento en última sílaba |
-| Mexiquenses | "me-xi-KUEN-ses" | Pronunciación natural en mexicano |
-| EOD | No mencionar la sigla en voz — ya expandida en el texto | — |
-| CONEVAL | No mencionado en narración | — |
+| Término | Pronunciación | Nota |
+|---------|--------------|------|
+| Michoacán | "mi-choa-CÁN" | Acento en última sílaba |
+| Guanajuato | "gua-na-JÚA-to" | La "j" como aspirada mexicana |
+| Guerrero | "gue-RRE-ro" | Doble r suave |
+| Oaxaca | "ua-HA-ca" | La x es como "j" en español mexicano |
+| INEGI | Expandido en texto como "Instituto Nacional de Estadística y Geografía" | No pronunciar como sigla |
+| CONEVAL | No aparece en la narración | — |
+| ENIGH | Expandido como "Encuesta Nacional de Ingresos y Gastos de los Hogares" | No pronunciar como sigla |
+| Banco Mundial | "BAN-co mun-DIAL" | Sin siglas, siempre expandido |
+| per cápita | "per CÁ-pi-ta" | Pronunciación correcta en español |
+| bracero/braceros | "bra-CE-ro" | Acento en segunda sílaba |
+| remesas | "re-ME-sas" | Término clave — pronunciar con claridad, sin apresurar |
 
 ---
 
 ## Tabla de timing completa
 
-| Chunk | Acto | Texto (primeras 10 palabras) | Inicio | Fin | Dur. (seg) | Notas de dirección |
-|-------|------|-------------------------------|--------|-----|------------|---------------------|
-| 01 | Gancho | "Cada lunes, millones de personas cruzan una frontera..." | 00:00 | 00:15 | 15 | Pausa dramática después de "Nadie la gobierna" |
-| 02 | Gancho | "Hay un mecanismo fiscal que casi nadie conoce..." | 00:15 | 00:45 | 30 | Pausa antes de "Trabajadores que regresan..." |
-| 03 | Contexto | "Ciudad de México genera el catorce punto ocho..." | 00:45 | 01:05 | 20 | Velocidad normal; énfasis en "SERVICIOS" al final |
-| 04 | Contexto | "Esos servicios necesitan personas. Pero vivir..." | 01:05 | 01:30 | 25 | Bajar velocidad en "cuatrocientos mil... mil novecientos setenta" |
-| 05 | Contexto | "Se construyó así un sistema implícito..." | 01:30 | 01:50 | 20 | Pausa de 0.8 seg después de los dos puntos en "implícito:" |
-| 06 | Anatomía | "El número es este: siete millones setecientos..." | 01:50 | 02:20 | 30 | "siete millones setecientos setenta mil" — muy lento y separado |
-| 07 | Anatomía | "El tiempo promedio de ese viaje es ochenta..." | 02:20 | 02:50 | 30 | Pausa de 1.5 seg después de "cinco y media" |
-| 08 | Anatomía | "Y aquí está el mecanismo: el Impuesto Sobre..." | 02:50 | 03:20 | 30 | "TRABAJA... VIVE" — énfasis separado; pausa larga antes de "No al trabajador" |
-| 09 | Anatomía | "Con ese impuesto, Ciudad de México financia..." | 03:20 | 03:50 | 30 | Énfasis en "NINGUNA"; pausa antes de "La red de transporte..." |
-| 10 | Anatomía | "Mientras tanto, el municipio que envía esos..." | 03:50 | 04:20 | 30 | Leer Ecatepec a la mexicana; pausa de 1 seg antes de "Casi ochocientas mil" |
-| 11 | Tensión | "Hay un argumento en contra. El Estado..." | 04:20 | 05:00 | 40 | Pausa de 1 seg antes de "Pero hay una diferencia estructural" |
-| 12 | Tensión | "El contraargumento más honesto es otro..." | 05:00 | 05:35 | 35 | "LIBRE" con ironía leve, no burlona |
-| 13 | Implicación | "Hay un número que no existe todavía..." | 05:35 | 06:05 | 30 | Voz más baja; cada oración como afirmación separada |
-| 14 | Implicación | "Quizás, porque calcular ese número obligaría..." | 06:05 | 06:30 | 25 | 2 seg de silencio antes de la pregunta final; no enfatizar |
+| Chunk | Acto | Texto (primeras 8 palabras) | Inicio | Fin | Dur. (seg) | Escenas | Nota de dirección |
+|-------|------|------------------------------|--------|-----|------------|---------|-------------------|
+| 01 | Gancho | "Cada año, los mexicanos que viven en..." | 00:00 | 00:45 | 45 | 1–2 | Pausa 1.5s después de "sesenta y siete mil millones"; "Es una trampa" — contundente |
+| 02 | Contexto | "Todo empieza en mil novecientos cuarenta y dos..." | 00:45 | 01:40 | 55 | 3–4 | Pausa 1.5s después de "Los circuitos, NO"; bajar velocidad en nombres geográficos |
+| 03 | Contexto | "Las familias que dependen hoy del dinero..." | 01:40 | 02:00 | 20 | 5 | Tono puente — conecta el contexto histórico con la anatomía |
+| 04 | Anatomía | "¿Adónde va ese dinero cuando llega?..." | 02:00 | 02:30 | 30 | 6 | Pausa 1s después de la pregunta inicial; énfasis en "NO provee" |
+| 05 | Anatomía | "Los estudios basados en esa encuesta muestran..." | 02:30 | 03:00 | 30 | 7 | "entre el CINCO y el QUINCE" — deliberado; pausa antes de "Son el precio" |
+| 06 | Anatomía | "Y aquí viene la consecuencia más silenciosa..." | 03:00 | 03:30 | 30 | 8 | Pausa 1.5s antes de "TAMBIÉN la sostienen" |
+| 07 | Anatomía | "El circuito de migración no extrae..." | 03:30 | 04:00 | 30 | 9 | "CONSTRUIRÍA" — con peso condicional; pausa antes de "de OTRO país" |
+| 08 | Anatomía | "El resultado es un equilibrio trágico..." | 04:00 | 04:30 | 30 | 10 | Últimas tres oraciones solas, con pausa entre cada una |
+| 09 | Tensión | "Aquí está el contraargumento que merece..." | 04:30 | 05:10 | 40 | 11 | Pausa 2s después de "completamente REAL"; "ÚNICO plan" — énfasis final |
+| 10 | Tensión | "El riesgo de depender de un solo mecanismo..." | 05:10 | 05:45 | 35 | 12 | Cada riesgo en línea separada: "Se llama X. / Se llama Y." |
+| 11 | Implicación | "En varias comunidades de Michoacán y Oaxaca..." | 05:45 | 06:30 | 45 | 13–14 | Speed 0.85; pausa 2s antes de la pregunta final; no enfatizar — dejar sonar |
 
-**Total: 390 segundos (6:30)**
+**Total: 11 chunks | ~390 segundos (6:30)**
 
 ---
 
-## Flujo de producción sugerido
+## Flujo de producción
 
-1. **Generar chunks individualmente** en ElevenLabs (no el texto completo de una vez — los chunks individuales permiten regenerar escenas sin regrabar todo)
-2. **Orden de prioridad para revisión:** Chunks 01, 14, 08 primero — son los momentos de mayor carga narrativa
-3. **Regenerar hasta 3 veces** por chunk si el timing o el énfasis no es correcto antes de ajustar parámetros
-4. **Exportar en WAV 44.1kHz** para edición en Adobe Premiere o DaVinci Resolve
-5. **Guardar cada chunk con nomenclatura:** `chunk_01_v1.wav`, `chunk_01_v2.wav` — nunca sobrescribir
+1. **Orden de grabación recomendado:** Chunk 01 primero (el gancho define el tono de todo). Si queda bien, grabar en orden.
+2. **Máximo 3 intentos por chunk** antes de ajustar parámetros. Si el timing falla en el intento 3, revisar el texto del chunk (puede ser muy denso).
+3. **Chunks prioritarios para revisión humana:** 01 (gancho), 09 (contraargumento), 11 (cierre). Son los momentos de mayor carga emocional.
+4. **Formato de exportación:** WAV, 44.1 kHz — compatible con Adobe Premiere y DaVinci Resolve.
+5. **Nomenclatura:** `chunk_01_v1.wav`, `chunk_01_v2.wav` — nunca sobrescribir tomas.
+6. **Usar `voice_gen.py`:** El script `00_Orchestrator/tools/voice_gen.py` ya está configurado para ElevenLabs SDK v1.x. Pasar cada chunk como string.
 
 ---
 *Generado por Agente A4 — Sistema de Video-Ensayos Cartográficos*

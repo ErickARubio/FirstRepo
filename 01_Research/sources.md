@@ -1,176 +1,128 @@
-# Fuentes Tier 1 — Fase 1
-**Proyecto:** 2026-05-edomex-cdmx
-**Agente:** A1 Investigador
-**Fecha:** 2026-05-10
+# Fuentes Tier 1 — Las remesas en México
+**Proyecto:** 2026-05-remesas-mx
+**Tesis seleccionada:** Tesis 2 — La geografía invisible del subsidio migrante
+**Agente:** A1 Investigador Económico
+**Fecha:** 2026-05-12
 
 ---
 
 ## Fuentes Tier 1A — Instituciones Nacionales
 
-### F01 — EOD 2017 (Encuesta Origen-Destino en Hogares de la ZMVM)
-- **Institución:** INEGI / Instituto de Ingeniería UNAM
+### F01 — Banco de México (Banxico): Remesas por entidad federativa
+- **Institución:** Banco de México
 - **Tier:** 1A
-- **URL:** https://www.inegi.org.mx/programas/eod/2017/
-- **Microdatos:** https://www.inegi.org.mx/rnm/index.php/catalog/533
-- **Resultados PDF:** https://www.inegi.org.mx/contenidos/programas/eod/2017/doc/resultados_eod_2017.pdf
-- **Formato:** Microdatos en CSV + tabulados
-- **Cobertura:** 16 alcaldías CDMX + 59 municipios Edomex + Tizayuca, Hidalgo
-- **Variables clave:** viajes por municipio origen-destino, propósito del viaje (trabajo), modo de transporte, duración del traslado
-- **Relevancia para el video:** Cuantifica el flujo pendular Edomex→CDMX; base de todos los mapas de movilidad; datos de 2017 son los más recientes disponibles a esta escala
-- **Dato verificado en búsqueda:** 34,565,491 viajes diarios; 22.5% intermunicipales (Edomex↔CDMX)
-- **Nota:** Requiere nueva EOD — la siguiente edición está pendiente desde 2023
+- **URL portal:** https://www.banxico.org.mx/SieInternet/
+- **Series relevantes:** CE100 (remesas totales), series por entidad federativa
+- **Formato:** Excel/CSV descargable del portal SIE
+- **Variables clave:** Monto de remesas recibidas por estado (millones USD), trimestral y anual
+- **Cobertura temporal:** 2003–2024
+- **Granularidad geográfica:** Estatal (32 entidades)
+- **Dato verificado:** Top 5 estados 2024: Michoacán, Jalisco, Guanajuato, CDMX, Edomex
+- **Estado:** Acceso vía portal SIE — descarga manual por estado o reporte nacional
 
----
-
-### F02 — PIBE 2023 (Producto Interno Bruto por Entidad Federativa)
+### F02 — INEGI: ENIGH 2022 (Encuesta Nacional de Ingresos y Gastos de los Hogares)
 - **Institución:** INEGI
 - **Tier:** 1A
-- **URL:** https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2024/PIBEF/PIBEF2023_CDMX.pdf
-- **Portal:** https://www.inegi.org.mx/app/tabulados/default.aspx?pr=17&vr=7&in=2&tp=20&wr=1&cno=2
-- **Formato:** PDF + tabulados descargables
-- **Variables clave:** PIB por entidad, PIB por sector de actividad económica
-- **Relevancia:** Establece que CDMX = 14.8% PIB nacional; Edomex = 9.1%; servicios = 83.5% PIB CDMX
-- **Dato verificado:** Sí, publicado dic 2024 para año fiscal 2023
+- **URL:** https://www.inegi.org.mx/programas/enigh/nc/2022/
+- **Microdatos:** https://www.inegi.org.mx/rnm/index.php/catalog/899
+- **Formato:** CSV (microdatos de hogares)
+- **Variables clave:** ingreso_rem (ingreso por remesas), gasto por rubro, características del hogar
+- **Granularidad:** Hogar / estatal
+- **Cobertura:** 2022 (última edición bienal disponible)
+- **Relevancia:** Mide composición del gasto de hogares receptores vs. no receptores de remesas; porcentaje de hogares receptores por estado
+- **Estado:** Microdatos públicos, requieren descarga y procesamiento en R o Python
 
----
-
-### F03 — IMSS: Puestos de trabajo asegurados por municipio
-- **Institución:** IMSS
-- **Tier:** 1A
-- **URL:** https://datos.gob.mx/busca/dataset/trabajadores-imss-asegurados-por-municipio
-- **URL alternativa:** https://www.imss.gob.mx/conoce-el-imss/memoria-estadistica-2023
-- **Formato:** CSV mensual
-- **Variables clave:** municipio de registro del empleo, número de asegurados, salario base de cotización
-- **Relevancia:** Permite estimar cuántos puestos de trabajo formales están registrados en alcaldías de CDMX; combinado con EOD identifica proporción de trabajadores que residen en Edomex
-- **Nota de limpieza:** El IMSS registra el municipio del patrón, no del trabajador — requiere cruce con EOD para inferir lugar de residencia
-- **Dato de referencia:** CDMX superó 3.5 millones de trabajadores asegurados en 2024
-
----
-
-### F04 — CONEVAL: Pobreza municipal 2020
-- **Institución:** CONEVAL
-- **Tier:** 1A
-- **URL:** https://www.coneval.org.mx/Medicion/Paginas/Pobreza-municipal.aspx
-- **URL Edomex:** https://www.coneval.org.mx/coordinacion/entidades/EstadodeMexico/Paginas/principal.aspx
-- **Formato:** Shapefile + Excel por municipio
-- **Variables clave:** % en pobreza, % en pobreza extrema, carencias sociales por municipio
-- **Relevancia:** Documenta que Ecatepec (43.5% pobreza, 786K personas) y Nezahualcóyotl (523K personas) son simultáneamente municipios expulsores de fuerza laboral y altamente pobres
-- **Dato verificado:** Ecatepec = 2° municipio con más pobres en términos absolutos a nivel nacional
-
----
-
-### F05 — INEGI EFIPEM: Finanzas Públicas Estatales y Municipales
+### F03 — INEGI: PIBE (Producto Interno Bruto por Entidad Federativa) 2023
 - **Institución:** INEGI
 - **Tier:** 1A
-- **URL:** https://www.inegi.org.mx/programas/finanzas/
-- **Formato:** Excel por entidad y municipio
-- **Variables clave:** ingresos propios, transferencias federales, gasto en infraestructura, deuda pública
-- **Relevancia:** Permite comparar la estructura fiscal de CDMX vs. municipios de Edomex; documenta la asimetría en capacidad de inversión pública
-- **Nota:** Requiere años 2018-2023 para comparativa histórica
+- **URL:** https://www.inegi.org.mx/temas/pibe/
+- **Formato:** Excel tabulados
+- **Variables clave:** PIB estatal a precios corrientes, crecimiento anual, PIB per cápita
+- **Relevancia:** Permite cruzar monto de remesas por estado (Banxico) con crecimiento económico (PIBE) para documentar la correlación negativa
+- **Estado:** Disponible en portal, último dato 2023
 
----
-
-### F06 — SEDATU: Delimitación de Zonas Metropolitanas 2018
-- **Institución:** SEDATU / CONAPO / INEGI
+### F04 — INEGI: Censo de Población y Vivienda 2020
+- **Institución:** INEGI
 - **Tier:** 1A
-- **URL:** https://www.gob.mx/conapo/documentos/delimitacion-de-las-zonas-metropolitanas-de-mexico-2015
-- **Versión 2018:** https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/702825006792.pdf
-- **Formato:** PDF + shapefile
-- **Variables clave:** municipios que integran cada zona metropolitana, criterios de delimitación
-- **Relevancia:** Establece la composición oficial de la ZMVM (76 municipios Edomex + 16 alcaldías CDMX + Tizayuca)
+- **URL:** https://www.inegi.org.mx/programas/ccpv/2020/
+- **Variables clave:** Pirámide de edad por estado, hogares con emigrantes internacionales
+- **Granularidad:** Municipal / estatal
+- **Relevancia:** Documenta el drenaje demográfico — pirámide de edad invertida en Michoacán, Guanajuato, Jalisco
+- **Estado:** Datos públicos, tabulados disponibles sin descarga de microdatos
 
----
-
-### F07 — ISN CDMX: Ley de Hacienda del Distrito Federal / CDMX
-- **Institución:** Secretaría de Administración y Finanzas CDMX
+### F05 — CONAPO: Índice de Intensidad Migratoria 2020
+- **Institución:** Consejo Nacional de Población
 - **Tier:** 1A
-- **URL:** https://transparencia.finanzas.cdmx.gob.mx/repositorio/public/upload/repositorio/Tesoreria/123/b/Criterio_9/123_XV_Impuesto_sobre_nominas_2024.pdf
-- **Formato:** PDF normativo
-- **Variables clave:** tasa del ISN (4% desde 2025), base gravable, exenciones
-- **Relevancia:** Establece el mecanismo fiscal central de la Tesis 1; el ISN recauda del trabajo realizado en CDMX independientemente de la residencia del trabajador
-
----
-
-### F08 — Diagnóstico Técnico de Movilidad PIM (SEMOVI)
-- **Institución:** SEMOVI CDMX
-- **Tier:** 1A (gobierno local)
-- **URL:** https://semovi.cdmx.gob.mx/storage/app/media/diagnostico-tecnico-de-movilidad-pim.pdf
-- **Formato:** PDF
-- **Variables clave:** tiempos de traslado, movilidad interestatal, condiciones del transporte público
-- **Relevancia:** Documenta que trabajadores de periferia inician viajes 4-6 AM; tiempos promedio de 85 min para viajes Edomex→CDMX
-- **Dato verificado:** ONU-Habitat cita 5 horas para cruzar la ZMVM de extremo a extremo
+- **URL:** https://www.gob.mx/conapo/documentos/indice-de-intensidad-migratoria-mexico-estados-unidos-2020
+- **Formato:** Excel + mapa
+- **Variables clave:** Índice municipal de intensidad migratoria, % hogares que reciben remesas, % hogares con emigrantes
+- **Granularidad:** Municipal y estatal
+- **Relevancia:** Establece cuáles son los municipios de "muy alta" y "alta" intensidad migratoria — el corazón del mapa de la tesis
+- **Estado:** Disponible públicamente, 2020 es la edición más reciente
 
 ---
 
 ## Fuentes Tier 1B — Organismos Multilaterales
 
-### F09 — BID: Gobernanza Metropolitana en América Latina
+### F06 — Banco Mundial: World Development Indicators (WDI)
+- **Institución:** Banco Mundial
+- **Tier:** 1B
+- **API verificada:** https://api.worldbank.org/v2/country/MX/indicator/BX.TRF.PWKR.CD.DT
+- **Indicadores:**
+  - BX.TRF.PWKR.CD.DT — Remesas recibidas USD corrientes
+  - BX.TRF.PWKR.DT.GD.ZS — Remesas como % del PIB
+  - NY.GDP.MKTP.CD — PIB México
+- **Datos verificados:**
+  - 2024: $67,637M USD (3.64% PIB)
+  - 2023: $66,237M USD
+  - 2022: $61,457M USD
+  - 2021: $55,067M USD
+  - 2020: $43,977M USD
+- **Estado:** API operacional, datos verificados en sesión 2026-05-12
+
+### F07 — CEPAL: Remesas y desarrollo en América Latina
+- **Institución:** Comisión Económica para América Latina y el Caribe
+- **Tier:** 1B
+- **URL portal:** https://www.cepal.org/es/subtemas/migracion-internacional
+- **Relevancia:** Estudios sobre correlación remesas-crecimiento económico regional; marco conceptual de "trampa de remesas"; comparativas con otros países LAC
+- **Estado:** Publicaciones abiertas en portal CEPAL; buscar "remesas México desarrollo regional"
+
+### F08 — BID: Evaluaciones de impacto de remesas
 - **Institución:** Banco Interamericano de Desarrollo
 - **Tier:** 1B
-- **URL de referencia:** https://publications.iadb.org/publications/spanish/viewer/gobernanza-metropolitana.pdf
-- **Relevancia:** Marco comparado de gobernanza metropolitana; posiciona a la ZMVM en contexto regional; referencia para Tesis 3
-- **Nota:** Buscar publicación específica sobre ZMVM o México en portal BID
+- **URL portal:** https://publications.iadb.org/
+- **Publicación clave:** "Las remesas y el desarrollo: ¿mito o realidad?" (BID, varios autores)
+- **Relevancia:** Evidencia sobre el efecto sustitución (remesas vs. inversión pública); impacto en capital productivo local
+- **Estado:** Publicaciones abiertas; buscar "remittances Mexico substitution effect"
 
----
-
-### F10 — ONU-Habitat: Movilidad ZMVM
-- **Institución:** ONU-Habitat México
-- **Tier:** 1B
-- **URL:** https://onu-habitat.org/index.php/5-horas-en-transporte-publico-para-cruzar-la-zmvm
-- **Relevancia:** Cita verificada: 5 horas para cruzar la ZMVM en transporte público; validación internacional del problema de movilidad
+### F09 — Pew Research Center: Estimados de mexicanos en EE.UU.
+- **Institución:** Pew Research Center
+- **Tier:** 1B (think tank de alta reputación metodológica)
+- **URL:** https://www.pewresearch.org/hispanic/
+- **Variables clave:** Población de origen mexicano en EE.UU., estados de residencia, estatus migratorio estimado
+- **Dato de referencia:** ~11-12 millones de mexicanos nacidos en México residen en EE.UU.
+- **Estado:** Reportes públicos anuales
 
 ---
 
 ## Fuentes Tier 1C — Centros Académicos
 
-### F11 — UNAM / GIITRAL: EOD 2017 herramienta interactiva
-- **Institución:** Instituto de Ingeniería UNAM
+### F10 — CIDE / COLMEX: Estudios sobre migración mexicana
+- **Institución:** CIDE, El Colegio de México
 - **Tier:** 1C
-- **URL:** https://giitral.iingen.unam.mx/Estudios/EstudioOD-ZMVM-2017.html
-- **Relevancia:** Portal interactivo con visualizaciones de la EOD 2017; útil para identificar flujos específicos por municipio
+- **URL CIDE:** https://www.cide.edu/publicaciones/
+- **Relevancia:** Investigación académica sobre circuitos migratorios históricos, Programa Bracero, efectos del IRCA 1986
+- **Estado:** Buscar documentos de trabajo sobre "migración circular" y "comunidades de alta migración"
 
 ---
 
-### F12 — WRI: Base de datos ajustada EOD 2017
-- **Institución:** World Resources Institute México
-- **Tier:** 1C
-- **URL:** https://es.wri.org/publicaciones/base-de-datos-ajustada-de-la-encuesta-origen-destino-para-la-zona-metropolitana-del
-- **Formato:** Dataset procesado
-- **Relevancia:** Versión ajustada y documentada de la EOD para análisis; puede ser más accesible que los microdatos originales de INEGI
+## Datasets prioritarios a procesar
 
----
-
-## Fuentes Tier 2 — Think Tanks y Análisis de Política
-
-### F13 — México Evalúa: Eliminación del Fondo Metropolitano
-- **Institución:** México Evalúa (centro de investigación de políticas públicas independiente)
-- **Tier:** 2
-- **URL portal:** https://www.mexicoevalua.org/
-- **URL específica:** Pendiente de localizar — buscar "Fondo Metropolitano" en buscador del sitio
-- **Relevancia:** Documenta la eliminación del Fondo Metropolitano del Presupuesto de Egresos de la Federación a partir de 2020 y la ausencia de mecanismos federales de coordinación metropolitana para la ZMVM. Citado en H6 y cronología.
-- **Cita en el texto:** "México Evalúa, 2024" — la publicación es de 2024 con análisis retrospectivo del período 2018-2024
-- **Estado:** Cita verificable, URL específica del análisis pendiente de localizar antes de publicación
-
----
-
-### F14 — Presupuesto de Egresos de la Federación (PEF) histórico
-- **Institución:** Secretaría de Hacienda y Crédito Público (SHCP)
-- **Tier:** 1A
-- **URL portal:** https://www.pef.hacienda.gob.mx/
-- **URL histórica:** https://www.transparenciapresupuestaria.gob.mx/
-- **Relevancia:** Permite verificar la existencia y montos del Fondo Metropolitano en los PEF 2000-2019, y su ausencia desde el PEF 2020. Citado en H6 y en la cronología (año 2000: "Se establece el Fondo Metropolitano en el PEF" y año 2020: "Eliminación del Fondo Metropolitano").
-- **Estado:** Fuente primaria pública — datos disponibles sin restricción
-
----
-
-## Datasets prioritarios a descargar
-
-| # | Nombre | Institución | URL | Variables | Visualización destino |
-|---|--------|------------|-----|-----------|----------------------|
-| D1 | EOD 2017 microdatos | INEGI | inegi.org.mx/programas/eod/2017/ | origen-destino por municipio, propósito trabajo | Mapa de flujos pendulares |
-| D2 | PIBE 2023 por entidad | INEGI | PIBEF2023.pdf | PIB por sector, por entidad | Gráfico comparativo CDMX/Edomex |
-| D3 | IMSS asegurados por municipio | IMSS | datos.gob.mx | puestos formales por municipio | Mapa de concentración de empleo |
-| D4 | Pobreza municipal CONEVAL 2020 | CONEVAL | coneval.org.mx | % pobreza, n° personas | Mapa coroplético periferia |
-| D5 | EFIPEM 2018-2023 | INEGI | inegi.org.mx/programas/finanzas/ | ingreso propio, gasto infraestructura | Comparativa fiscal CDMX vs Edomex |
-| D6 | ISN recaudación CDMX | SAF CDMX | finanzas.cdmx.gob.mx | recaudación anual ISN por sector | Infografía de flujo fiscal |
-| D7 | Delimitación ZMVM shapefile | SEDATU/CONAPO | conapo.gob.mx | límites municipales, clasificación ZM | Mapa base de la ZMVM |
+| # | Nombre | Institución | Formato | Variables | Visual destino |
+|---|--------|-------------|---------|-----------|----------------|
+| D1 | Remesas por entidad 2000-2024 | Banxico SIE | Excel/CSV | USD por estado por año | Mapa coroplético + serie temporal |
+| D2 | ENIGH 2022 — hogares receptores | INEGI | CSV microdatos | gasto por rubro, ingreso_rem | Gráfico composición del gasto |
+| D3 | Índice Intensidad Migratoria 2020 | CONAPO | Excel + shapefile | índice por municipio | Mapa base de circuitos |
+| D4 | PIBE 2023 por entidad | INEGI | Excel | PIB per cápita, crecimiento | Scatter plot remesas vs crecimiento |
+| D5 | Censo 2020 — pirámide de edad | INEGI | Tabulados web | edad, sexo, por estado | Pirámide demográfica Michoacán vs MX |
+| D6 | WDI remesas MX 2000-2024 | Banco Mundial | API verificada | BX.TRF.PWKR.CD.DT | Serie temporal introducción |

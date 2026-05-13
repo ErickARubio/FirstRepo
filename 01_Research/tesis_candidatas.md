@@ -1,99 +1,85 @@
-# Tesis Candidatas — Fase 1
-**Proyecto:** 2026-05-edomex-cdmx
-**Agente:** A1 Investigador
-**Fecha:** 2026-05-10
+# Tesis Candidatas — Las remesas en México
+**Proyecto:** 2026-05-remesas-mx
+**Agente:** A1 Investigador Económico
+**Fecha:** 2026-05-12
 
 ---
 
-## Tesis 1: El impuesto que no regresa — el ISN como transferencia silenciosa
+### Tesis 1: El nuevo petróleo que no pertenece al Estado
 
-**Enunciado:** Ciudad de México recauda el impuesto sobre nóminas de millones de trabajadores que viven en el Estado de México, financiando servicios urbanos capitalinos con trabajo mexiquense que no recibe esos beneficios.
+**Enunciado:** Las remesas superaron al petróleo como primera fuente de divisas de México en 2019 y en 2024 representaron el 3.6% del PIB nacional — más que la inversión extranjera directa — pero este flujo de capital no está sujeto a ningún marco de política pública coherente: no se grava, no se canaliza al desarrollo productivo y el Estado no tiene instrumentos para influir en él.
 
-**Gancho contraintuitivo:** Cada que un empleador de la Cuauhtémoc paga su nómina, parte de ese pago va al erario de CDMX —aunque la mitad de sus trabajadores salieron a las 5 AM de Ecatepec. Ciudad de México cobra el impuesto del trabajo que hace funcionar su economía de servicios, pero ese trabajo fue producido, dormido y sostenido en otro estado.
+**Gancho contraintuitivo:** México recibe más dólares de sus migrantes que de todo el petróleo que extrae. Y sin embargo, el gobierno nunca ha podido tocar ese dinero — ni para bien ni para mal.
 
 **Datos clave:**
-- El ISN en CDMX es del 4% sobre nómina total (reforma dic 2024), uno de los más altos del país — Fuente: Secretaría de Administración y Finanzas CDMX, 2025
-- CDMX genera 14.8% del PIB nacional en 2023, con el sector servicios representando el 83.5% de su producto — Fuente: INEGI, PIBE 2023
-- El 22.5% de los 34.5 millones de viajes diarios en la ZMVM son intermunicipales (Edomex↔CDMX) — Fuente: EOD 2017, INEGI
-- El ISN es un impuesto estatal: lo recauda el estado donde se realiza el trabajo, no donde vive el trabajador — Fuente: Ley de Hacienda CDMX
+- Remesas 2024: $67,637M USD — Fuente: Banco Mundial (BX.TRF.PWKR.CD.DT), 2024
+- Remesas/PIB 2024: 3.64% — Fuente: Banco Mundial (BX.TRF.PWKR.DT.GD.ZS), 2024
+- Ingresos petroleros 2024: ~$27,000M USD — Fuente: PEMEX / SHCP, 2024
+- IED México 2023: ~$36,000M USD — Fuente: Secretaría de Economía / UNCTAD, 2023
+- Crecimiento remesas 2020→2024: +54% — Fuente: Banco Mundial, serie histórica
 
-**Tensión narrativa central:** El mismo trabajador que sostiene fiscalmente a Ciudad de México no puede usar su Metro sin pagar dos trasbordos previos, vive en un municipio con 40%+ de pobreza, y no puede votar por el jefe de gobierno que administra el dinero de su trabajo.
+**Tensión narrativa central:** El ingreso más grande de la economía mexicana es descentralizado, difuso, informal y completamente fuera del alcance del Estado. ¿Es eso una fortaleza o una trampa del desarrollo?
 
-**Implicación abierta:** ¿Es posible cuantificar cuánto del ISN capitalino proviene de trabajo mexiquense? ¿Y si ese número se hiciera público, cambiaría la negociación política entre los dos estados?
+**Implicación abierta:** ¿Pueden los $67,000 millones anuales convertirse en capital productivo, o están condenados a ser consumo de subsistencia generación tras generación?
 
 **Fuentes primarias necesarias:**
-- IMSS: puestos de trabajo formales por municipio de trabajo vs. municipio de residencia
-- SAT / Hacienda CDMX: recaudación ISN desagregada por sector
-- EOD 2017, INEGI: flujos de trabajo por origen-destino
+- Banco Mundial — World Development Indicators (API disponible, verificada)
+- Banxico — Balanza de Pagos (portal SIE)
+- SHCP — Ingresos presupuestarios (portal transparencia)
+- PEMEX — Informe anual
 
-**Dificultad de producción:** 3/5
-- Datos de empleo formal disponibles por municipio (IMSS)
-- Recaudación ISN desagregada requiere solicitud de transparencia
-- El dato central (ISN atribuible a trabajo mexiquense) debe calcularse, no se publica directamente
+**Dificultad de producción:** 2
 
 ---
 
-## Tesis 2: La reserva invisible — el Estado de México como dormitorio productivo de CDMX
+### Tesis 2: La geografía invisible del subsidio migrante
 
-**Enunciado:** El sector servicios de Ciudad de México — que genera el 83.5% de su PIB — opera con una reserva laboral de 3 millones de trabajadores diarios que el Estado de México produce, aloja y desgasta: mano de obra que el centro metropolitano consume sin asumir sus costos de reproducción social.
+**Enunciado:** Las remesas no distribuyen riqueza equitativamente: la concentran en los mismos estados expulsores de migrantes desde hace 60 años — Michoacán, Guanajuato, Jalisco, Guerrero — perpetuando una geografía de dependencia que desacopla el consumo local del desarrollo regional. Los estados que más reciben remesas no son los que más crecen económicamente.
 
-**Gancho contraintuitivo:** Cuando hablamos de la economía de Ciudad de México, describimos los edificios de oficinas en Reforma, los restaurantes de Polanco y el aeropuerto de Santa Lucía. Pero no describimos a los 3 millones de personas que llegan a operar todo eso desde municipios con 43% de pobreza, 85 minutos de traslado promedio, y que a las 11 PM ya están en cama para repetir el ciclo a las 4:30 AM.
+**Gancho contraintuitivo:** El estado que más remesas recibe per cápita en México — Michoacán — tiene una de las tasas de crecimiento del PIB estatal más bajas del país. El dinero llega pero la economía no despega.
 
 **Datos clave:**
-- La EOD 2017 registra 7.77 millones de viajes diarios entre Edomex y CDMX (22.5% de 34.5M) — Fuente: INEGI, EOD 2017
-- El tiempo promedio de traslado entre zona conurbada y CDMX es 85 minutos; en zonas periféricas puede superar 3 horas cada sentido — Fuente: SEMOVI, Diagnóstico PIM 2019; ONU-Habitat
-- Ecatepec (1.7M hab., 43.5% en pobreza) es uno de los principales municipios expulsores de fuerza laboral hacia CDMX — Fuente: CONEVAL 2020; CONAPO
-- Los servicios representan el 83.5% del PIB capitalino (4.7 billones de pesos en 2023) — Fuente: INEGI, PIBE 2023
-- Trabajadores de la periferia ZMVM inician sus viajes entre las 4:00 y 6:00 AM — Fuente: SEMOVI, Diagnóstico técnico de movilidad 2019
+- Top 5 estados receptores 2024: Michoacán ($4,273M), Jalisco ($4,081M), Guanajuato ($4,071M), CDMX ($3,561M), Edomex ($3,295M) — Fuente: Banxico, 2024
+- PIB per cápita Michoacán vs media nacional: ~60% de la media — Fuente: INEGI, PIBE 2023
+- Hogares receptores de remesas Michoacán: ~20% — Fuente: ENIGH 2022, INEGI
+- Correlación remesas/crecimiento PIB estatal: negativa en estados con alta dependencia — Fuente: CEPAL, estudios LAC
 
-**Tensión narrativa central:** La economía de servicios de CDMX tiene un costo oculto que no aparece en ningún balance: el agotamiento físico, el tiempo perdido y la pobreza estructural de las familias que sostienen ese sistema desde la periferia. El centro crece con trabajo que no paga su reproducción.
+**Tensión narrativa central:** El mapa de remesas es también el mapa del estancamiento. ¿Las remesas sostienen regiones que de otro modo habrían presionado al Estado a invertir en ellas?
 
-**Implicación abierta:** ¿En qué punto el costo del traslado (tiempo, dinero, salud) hace que la fuerza laboral periférica deje de ser "rentable" para el sistema? ¿Ya estamos cerca de ese umbral con el encarecimiento del transporte informal?
+**Implicación abierta:** ¿Qué pasa cuando la segunda generación de receptores deja de migrar — o cuando los migrantes originales se jubilan en EE.UU.?
 
 **Fuentes primarias necesarias:**
-- EOD 2017, INEGI: viajes por propósito (trabajo), municipio de origen y destino
-- ENOE, INEGI: ingresos laborales por municipio / zona metropolitana
-- CONEVAL: pobreza y carencias sociales por municipio (2020-2023)
-- IMSS: distribución de puestos de trabajo por municipio
+- Banxico — Remesas por entidad federativa (SIE, series por estado)
+- INEGI — ENIGH 2022 (microdatos públicos), PIB estatal (PIBE)
+- CEPAL — Estudios de remesas y desarrollo regional en LAC
+- BID — Evaluaciones de impacto de remesas en capital local
 
-**Dificultad de producción:** 2/5
-- La mayoría de datos están en portales abiertos
-- Los mapas de flujo origen-destino son posibles con la EOD 2017
-- La narrativa visual (mapas de calor de traslados) es muy potente y ejecutable
+**Dificultad de producción:** 3
 
 ---
 
-## Tesis 3: La megarregión sin gobierno — la disfunción como política pública
+### Tesis 3: La pandemia demostró que los migrantes son el fondo de emergencia que México nunca construyó
 
-**Enunciado:** La ausencia de gobernanza metropolitana unificada en la ZMVM no es un accidente administrativo: es un arreglo institucional que perpetúa el flujo de recursos del Estado de México hacia Ciudad de México sin mecanismo de compensación, y que ninguno de los actores con poder tiene incentivos para corregir.
+**Enunciado:** El crecimiento de +54% en remesas entre 2020 y 2024 no se explica por mayor migración sino por un cambio de comportamiento: los migrantes mexicanos en EE.UU. enviaron más durante la crisis precisamente cuando la economía mexicana se contrajo 8.5%. Las remesas actuaron como estabilizador macroeconómico anticíclico — función que en teoría corresponde al Estado — sin política pública, sin coordinación y sin costo fiscal.
 
-**Gancho contraintuitivo:** La ZMVM tiene 23 millones de habitantes — más que Chile, más que los Países Bajos — y no tiene un solo gobierno que la administre. Tres entidades federativas, decenas de municipios y un gobierno central llevan décadas coexistiendo sin un plan metropolitano vinculante. El Fondo Metropolitano, el único mecanismo federal de compensación, fue eliminado en 2020. Nadie lo reclamó públicamente.
+**Gancho contraintuitivo:** En el peor año económico de México en décadas (2020, -8.5% PIB), las remesas crecieron +11%. El "rescate" más eficaz de la economía mexicana no lo diseñó ningún gobierno.
 
 **Datos clave:**
-- La ZMVM concentra aprox. 26% del PIB nacional con solo 18% de la población — Fuente: INEGI PIBE 2023; comunicado ZMVM
-- El Fondo Metropolitano fue eliminado del PEF en 2020, dejando sin financiamiento federal proyectos de infraestructura compartida — Fuente: México Evalúa, 2024
-- La ZMVM incluye 76 municipios de Edomex + 16 alcaldías de CDMX + 1 municipio de Hidalgo, gobernados por 3 entidades distintas — Fuente: SEDATU, delimitación ZMVM 2018
-- El Metro de CDMX termina en la frontera con Edomex: los municipios mexiquenses más poblados no tienen acceso directo al sistema de transporte masivo capitalino — Fuente: STC Metro; SEMOVI
-- La ruta del Tren Suburbano, única conexión masiva Edomex-CDMX, tiene una tarifa que equivale al 15-20% del salario mínimo diario — Fuente: FERROMEX / STC, 2024
+- PIB México 2020: -8.5% — Fuente: INEGI (Cuentas Nacionales), 2021
+- Remesas 2020: $43,977M USD (+11% vs 2019) — Fuente: Banco Mundial / Banxico, 2021
+- Remesas 2021: $55,067M USD (+24.1% vs 2020) — Fuente: Banco Mundial, 2022
+- Remesas 2022: $61,457M USD (+9.0%) — Fuente: Banco Mundial, 2023
+- Remesas 2024: $67,637M USD — Fuente: Banco Mundial, 2024
 
-**Tensión narrativa central:** La disfunción no es neutral. Cada año sin coordinación metropolitana es un año en que los municipios de Edomex financian, con su territorio y su pobreza, la competitividad de CDMX sin recibir compensación. La gobernanza fallida tiene ganadores.
+**Tensión narrativa central:** Si los migrantes son el seguro de desempleo informal de México, ¿qué pasa cuando ellos necesiten ayuda? ¿Qué ocurre si hay una recesión en EE.UU. o si la política migratoria federal se endurece radicalmente?
 
-**Implicación abierta:** ¿Existe una ventana política —con las nuevas administraciones locales y federal— para reconstruir un mecanismo de coordinación metropolitana? ¿O los incentivos electorales de tres entidades distintas hacen ese acuerdo estructuralmente imposible?
+**Implicación abierta:** La resiliencia más grande de la economía mexicana depende de la voluntad de millones de personas viviendo en un país extranjero con derechos precarios. Eso no es política económica — es suerte institucionalizada.
 
 **Fuentes primarias necesarias:**
-- SEDATU: delimitación oficial ZMVM y acuerdos de coordinación
-- Presupuesto de Egresos de la Federación (PEF) 2018-2024: evolución del Fondo Metropolitano
-- SEMOVI / STC: red de transporte masivo y su cobertura territorial
-- INEGI EFIPEM: finanzas públicas estatales y municipales
+- Banco Mundial — WDI, BX.TRF.PWKR.CD.DT (API verificada y operacional)
+- INEGI — Cuentas Nacionales / Indicadores de actividad económica
+- CONEVAL — Medición de pobreza 2018-2022
+- Banxico — Balanza de pagos trimestral
+- Pew Research Center — Estimados de población mexicana en EE.UU.
 
-**Dificultad de producción:** 4/5
-- Requiere análisis presupuestal histórico (PEF, INEGI EFIPEM)
-- Los datos de gobernanza son cualitativos y requieren contraste institucional
-- El mapa de "zonas sin Metro" es potente pero requiere trabajo cartográfico
-- Riesgo de que la narrativa derive en denuncia política en lugar de análisis estructural
-
----
-
-## Nota editorial sobre H-05 (2026-05-10)
-
-La estimación de "3 millones de trabajadores mexiquenses que cruzan a CDMX diariamente" se removió de la tesis y del guion por no contar con fuente pública verificable. Es una estimación derivada del cruce metodológico EOD 2017 + IMSS, identificada en findings.md como "hallazgo potencial pendiente de cálculo propio". Si en el futuro se realiza ese cálculo con metodología documentada, podrá incorporarse en piezas posteriores o en material complementario.
+**Dificultad de producción:** 2

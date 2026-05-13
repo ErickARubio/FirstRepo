@@ -1,9 +1,10 @@
-# Plan de Animación — El impuesto que no regresa
+# Plan de Animación — La geografía invisible del subsidio migrante
 
-**Proyecto:** 2026-05-edomex-cdmx
+**Proyecto:** 2026-05-remesas-mx
 **Agente:** A5 Director Técnico de Motion Graphics
-**Fecha:** 2026-05-10
+**Fecha:** 2026-05-13
 **Estado:** Borrador v1.0
+**Input:** script_draft.md v1.0 + visual_brief.md v1.0 (ambos aprobados)
 
 ---
 
@@ -22,6 +23,31 @@
 
 ---
 
+## Paleta — Documental Oscuro
+
+| Rol | Hex | Uso |
+|-----|-----|-----|
+| Fondo principal | `#121212` | Todas las escenas oscuras (default) |
+| Acento dorado (remesas) | `#F5C518` | Contadores, cifras clave, nodos del ciclo |
+| Rojo alerta | `#E63946` | Datos negativos, riesgo, cohorte demográfica perdida |
+| Azul comparativo | `#3A86FF` | Datos de referencia, promedio nacional, serie remesas |
+| Gris editorial | `#A0A0A0` | Fuentes en pie, texto secundario |
+| Blanco editorial | `#F2F2F0` | Texto principal sobre fondos oscuros |
+
+---
+
+## Tipografía
+
+| Rol | Familia | Uso en AE |
+|-----|---------|-----------|
+| Display | Bebas Neue Bold | Números grandes, títulos de acto |
+| Body | Barlow Medium | Narración de apoyo, listas |
+| Mono | Barlow Condensed | Fuentes en pie, etiquetas técnicas |
+
+> **Antes de ejecutar ae_script.jsx:** instalar Bebas Neue y Barlow (Google Fonts) en el sistema.
+
+---
+
 ## Reglas globales de motion
 
 | Tipo de movimiento | Easing | Duración |
@@ -29,12 +55,15 @@
 | Entrada de elemento principal | ease-out cubic | 700ms |
 | Salida de elemento | ease-in cubic | 500ms |
 | Transición entre escenas (mismo acto) | Cut duro | 0ms |
-| Transición entre actos | Fade negro | 700ms |
+| Transición entre actos | Fade a negro | 700ms |
 | Count-up de número | ease-out expo | 1500ms |
 | Aparición de texto editorial | fade + slide-up 30px | 400ms |
-| Revelado de mapa (choropleth) | ease-out progresivo | 800ms |
+| Revelado de mapa coroplético | ease-out progresivo | 800ms |
 | Líneas de flujo (flow map) | draw-on secuencial | 2000ms |
-| Highlight de región | scale 100→105% + glow | 300ms |
+| Highlight de región/nodo | scale 100→105% + glow | 300ms |
+| Sweep de gráfico dona | ease-out, sentido horario | 1000ms |
+| Grow de barra vertical | grow desde base, ease-out | 600ms |
+| Aparición de nodo de ciclo | scale 0→100% + fade | 500ms |
 
 ---
 
@@ -42,410 +71,459 @@
 
 ---
 
-### ESCENA 01 — Mapa de apertura nocturno
-**Chunk:** CHUNK_01 | **Inicio:** 00:00 | **Fin:** 00:15 | **Duración:** 15s
-**Visual:** MAP-FLOW nocturno | **Comp AE:** SC01_APERTURA
+### ESCENA 01 — Contador tipográfico $67.6B
+**Chunk:** CHUNK_01 | **Inicio:** 00:00 | **Fin:** 00:25 | **Duración:** 25s
+**Visual:** COUNTER animado | **Comp AE:** SC01_CONTADOR_REMESAS
 
 #### Animación de entrada
 - **Tipo:** Fade desde negro
-- **Duración:** 1200ms
-- **Easing:** ease-out cubic
-- El mapa aparece en estado "noche" (fondo `#0D1117`)
+- **Duración:** 800ms
+- Fondo `#121212` — permanece hasta el final del video
 
 #### Elementos y comportamiento
 | Elemento | Aparece en | Animación | Sale en | Notas |
 |----------|-----------|-----------|---------|-------|
-| Fondo mapa ZMVM (oscuro) | 00:00 | Fade-in 1200ms | 00:15 | Base estática |
-| Líneas de flujo ámbar Edomex→CDMX | 00:02 | draw-on secuencial desde origen, 2000ms, ease-out expo | loop suave | Grosor proporcional al volumen del flujo |
-| Texto "La frontera invisible" | 00:10 | fade + slide-up 20px, 400ms | 00:15 | Inter ExtraBold, `#F4F6F9`, centrado inferior |
+| Fondo sólido `#121212` | 00:00 | — | 00:25 | Base permanente |
+| Counter "$67,637,000,000" en dorado | 00:02 | count-up 0→67,637,000,000, 1500ms, ease-out expo | 00:25 | Bebas Neue 120px, `#F5C518` |
+| Texto "USD" debajo del número | 00:04 | fade, 400ms | 00:25 | Barlow Condensed 36px, `#A0A0A0` |
+| Línea 1: "Mayor que los ingresos petroleros" | 00:08 | fade + slide-up 30px, 400ms | 00:25 | `#F2F2F0`, 36px, entrada secuencial |
+| Línea 2: "Mayor que la IED" | 00:12 | fade + slide-up 30px, 400ms | 00:25 | delay 0.5s respecto a línea 1 |
+| Línea 3: "Primera fuente de divisas" | 00:16 | fade + slide-up 30px, 400ms | 00:25 | delay 0.5s respecto a línea 2 |
+| Fuente: "Banco Mundial, 2024" | 00:03 | fade, 300ms | 00:25 | `#A0A0A0`, Barlow Condensed 24px, pie derecho |
+
+**Momento crítico:** El counter llega a su valor final al mismo tiempo que la voz dice "sesenta y siete mil millones de dólares." Las tres líneas comparativas entran durante la pausa dramática `[...]`.
 
 #### Animación de salida
-- **Tipo:** Cut duro a ESCENA 02
-- El mapa sigue corriendo en fondo oscuro — la escena 2 entra encima con un fade rápido del fondo claro
-
-#### Sincronización con voz
-- Las líneas de flujo empiezan a dibujarse en cuanto comienza el audio (00:02)
-- "La frontera invisible" aparece en 00:10, coincidiendo con la pausa dramática del CHUNK_01
+- **Tipo:** Cut duro a ESCENA 02 (misma paleta oscura, sin necesidad de transición)
 
 ---
 
-### ESCENA 02 — Diagrama mecanismo ISN
-**Chunk:** CHUNK_02 | **Inicio:** 00:15 | **Fin:** 00:45 | **Duración:** 30s
-**Visual:** DIAGRAM animado | **Comp AE:** SC02_ISN_MECANISMO
+### ESCENA 02 — Mapa coroplético dual (remesas vs. PIB)
+**Chunk:** CHUNK_01 cont. | **Inicio:** 00:25 | **Fin:** 00:45 | **Duración:** 20s
+**Visual:** MAP-COR (10s) → OVERLAY MAP-COR (10s) | **Comp AE:** SC02_MAPA_DUAL
+
+#### Parte A: Mapa remesas (00:25–00:35)
+| Elemento | Aparece en | Animación | Sale en |
+|----------|-----------|-----------|---------|
+| Mapa coroplético México (remesas 2024) | 00:25 | revelado progresivo ease-out, 800ms | 00:35 |
+| Paleta gris claro → amarillo `#F5C518` | simultáneo | fill por intensidad, norte→sur | 00:35 |
+| Top 5 estados iluminados en secuencia | 00:28 | scale 100→104% + glow, 300ms c/u, delay 400ms | 00:35 |
+| Etiqueta nombre+monto de cada estado | simultáneo al highlight | fade + bubble, 300ms | 00:35 |
+| Fuente "Banxico SIE, 2024" | 00:26 | fade, 300ms | 00:35 |
+
+#### Parte B: Overlay crecimiento PIB (00:35–00:45)
+| Elemento | Aparece en | Animación | Sale en |
+|----------|-----------|-----------|---------|
+| Overlay transparencia 60% sobre mapa A | 00:35 | cross dissolve 600ms | 00:45 |
+| Escala de color PIB (azul frío = bajo crecimiento) | simultáneo | revelado progresivo, 800ms | 00:45 |
+| Mismos 5 estados — ahora en azul oscuro | 00:38 | transición de color, ease-out, 500ms | 00:45 |
+| Texto: "El mapa del dinero es el mapa del estancamiento." | 00:40 | fade + slide-up, 400ms | 00:45 | `#F2F2F0`, Barlow Medium 36px |
+
+**El argumento visual:** el mapa A (dorado = remesas) y el mapa B (azul = bajo PIB) muestran exactamente los mismos estados coloreados. El espectador lo entiende sin narración.
+
+#### Animación de salida
+- **Tipo:** Fade a negro, 700ms — cambio de Acto 1 a Acto 2
+
+---
+
+### ESCENA 03 — Imagen documental Programa Bracero
+**Chunk:** CHUNK_02 | **Inicio:** 00:45 | **Fin:** 01:15 | **Duración:** 30s
+**Visual:** IMG-DOC B&W | **Comp AE:** SC03_BRACERO
 
 #### Animación de entrada
-- **Tipo:** Fade blanco desde negro (transición de noche a día)
-- **Duración:** 700ms
-- Fondo cambia a `#FFFFFF`
+- **Tipo:** Fade desde negro, 600ms
+- Asset: imagen editorial dominio público (Library of Congress) — blanco y negro, trabajadores agrícolas 1940s–1960s
 
 #### Elementos y comportamiento
 | Elemento | Aparece en | Animación | Sale en | Notas |
 |----------|-----------|-----------|---------|-------|
-| Ícono empresa CDMX (centro) | 00:16 | scale 0→100% + fade, 600ms, ease-out | — | Azul `#0072B5` |
-| Ícono trabajador A (Condesa) | 00:19 | slide desde abajo-izq, 500ms | — | Color neutro `#4A6274` |
-| Ícono trabajador B (Ecatepec) | 00:21 | slide desde abajo-der, 500ms | — | Naranja `#E8520A` |
-| Flecha ISN 4% → erario | 00:25 | draw-on hacia arriba, 700ms | — | Aparece cuando voz dice "cuatro pesos de cada cien" |
-| Texto "ISN: 4% sobre nómina total" | 00:28 | fade + slide-up, 400ms | — | Inter ExtraBold 72px |
-| Caja "Erario CDMX" | 00:30 | scale + fade, 500ms | — | `#0D1B2A` con texto blanco |
+| Foto Bracero (full bleed) | 00:45 | fade, 600ms | 01:15 | Ajuste de brillo: -15%, contraste: +10% para profundidad |
+| Overlay sólido negro 30% | 00:45 | — | 01:15 | Mejora legibilidad de texto |
+| Bloque datos sobreimpuesto | 00:48 | fade + slide-up, 400ms, ease-out | 01:10 | Esquina inferior izquierda |
+| "Programa Bracero / 1942–1964" | — | — en bloque — | — | Bebas Neue 64px, `#F5C518` |
+| "4,500,000 mexicanos" | — | — | — | Bebas Neue 48px, `#F2F2F0` |
+| "Michoacán — Guanajuato — Jalisco" | — | — | — | Barlow Medium 36px, `#A0A0A0` |
+| "→ California — Texas — Illinois" | — | — | — | Barlow Medium 36px, `#A0A0A0` |
+| Fuente "National Archives / CONAPO" | 00:47 | fade, 300ms | 01:10 | Pie inferior derecho |
+
+**Instrucción de producción:** La foto actúa como telón de fondo estático. El bloque de datos entra como unidad sólida (no elemento por elemento). No aplicar motion a la foto — la estabilidad contrasta con las animaciones de datos del resto del video.
 
 #### Animación de salida
-- **Tipo:** Cross dissolve 600ms hacia ESCENA 03
-
-#### Sincronización con voz
-- Empresa: cuando voz dice "Cada empresa con domicilio..."
-- Flecha ISN: cuando voz dice "cuatro pesos de cada cien"
-- Ícono Ecatepec (naranja) aparece cuando voz dice "trabajadores que viven en el Estado de México"
+- **Tipo:** Cut duro a ESCENA 04
 
 ---
 
-### ESCENA 03 — PIB nacional + pastel CDMX
-**Chunk:** CHUNK_03 | **Inicio:** 00:45 | **Fin:** 01:05 | **Duración:** 20s
-**Visual:** MAP-COR (10s) → CHART-PIE (10s) | **Comp AE:** SC03_PIB
-
-#### Parte A: Mapa PIB (00:45–00:55)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa México por entidad | 00:45 | revelado coroplético ease-out, 800ms | 00:55 |
-| Resaltado CDMX | 00:47 | scale 100→103% + glow, 300ms | 00:55 |
-| Counter "14.8% del PIB nacional" | 00:50 | count-up 0→14.8, 1500ms | 00:55 |
-| Fuente en pie "INEGI, PIBE 2023" | 00:46 | fade, 300ms | 00:55 |
-
-#### Parte B: Pastel servicios (00:55–01:05)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Gráfico pastel CDMX | 00:55 | pie sweep ease-out, 1000ms | 01:05 |
-| Segmento "83.5% servicios" resaltado | 01:00 | scale 100→108% + saturación, 400ms | 01:05 |
-| Etiqueta "83.5% servicios" | 01:01 | fade + slide, 400ms | 01:05 |
-
-#### Transición: Cross dissolve 600ms entre parte A y parte B
-#### Salida: Cut a ESCENA 04
-
----
-
-### ESCENA 04 — Crecimiento Ecatepec + expansión urbana
-**Chunk:** CHUNK_04 | **Inicio:** 01:05 | **Fin:** 01:30 | **Duración:** 25s
-**Visual:** CHART-BAR (12s) + MAP expansión (13s) | **Comp AE:** SC04_CRECIMIENTO
-
-#### Parte A: Barras Ecatepec (01:05–01:17)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Eje Y (escala) | 01:05 | fade, 300ms | 01:17 |
-| Barras 1970→2020 (secuencial) | 01:06 | grow-up desde base, ease-out, 200ms/barra | 01:17 |
-| Etiqueta final "1.65M hoy" | 01:14 | fade + slide, 400ms | 01:17 |
-| Fuente "INEGI, Censos 1970-2020" | 01:06 | fade, 300ms | 01:17 |
-
-**Nota:** Las barras crecen de izquierda a derecha, una por una, con delay de 150ms entre cada una para que el crecimiento temporal se lea como proceso histórico.
-
-#### Parte B: Mapa expansión urbana (01:17–01:30)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa base ZMVM | 01:17 | fade, 500ms | 01:30 |
-| Anillo 1970 (núcleo CDMX) | 01:18 | fill radial ease-out, 600ms | 01:30 |
-| Anillo 1980 | 01:20 | fill radial ease-out, 600ms | 01:30 |
-| Anillo 1990 | 01:22 | fill radial, naranja | 01:30 |
-| Anillo 2000-2020 (Edomex) | 01:24 | fill radial, rojo, más rápido | 01:30 |
-
-#### Salida: Cut a ESCENA 05
-
----
-
-### ESCENA 05 — Pantalla tipográfica editorial
-**Chunk:** CHUNK_05 | **Inicio:** 01:30 | **Fin:** 01:50 | **Duración:** 20s
-**Visual:** TYPO dos columnas | **Comp AE:** SC05_SISTEMA
+### ESCENA 04 — Mapa de flujos migratorios (líneas que crecen)
+**Chunk:** CHUNK_02 cont. | **Inicio:** 01:15 | **Fin:** 01:40 | **Duración:** 25s
+**Visual:** MAP-FLOW | **Comp AE:** SC04_FLUJOS_MIG
 
 #### Animación de entrada
-- **Tipo:** Fade desde negro, 700ms — marca cambio de tono
-- Fondo `#FFFFFF` limpio
+- **Tipo:** Cut directo desde ESCENA 03, fondo `#121212`
 
 #### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Columna izq. "CDMX / Empleo / Producto" | 01:31 | slide desde izquierda, 600ms, ease-out | 01:50 |
-| Flecha doble central "←→" | 01:35 | fade + scale 0→100%, 400ms | 01:50 |
-| Columna der. "EDOMEX / Trabajadores / Costos" | 01:37 | slide desde derecha, 600ms, ease-out | 01:50 |
-
-**Timing preciso:** La columna izquierda entra con "la capital produce el empleo", la flecha con "y se queda con el producto", la columna derecha con "La periferia produce los trabajadores".
-
-#### Animación de salida
-- **Tipo:** Fade a negro, 700ms — cierre de Acto 2, apertura del Acto 3
-
----
-
-### ESCENA 06 — Mapa flujos EOD 2017 (detallado)
-**Chunk:** CHUNK_06 | **Inicio:** 01:50 | **Fin:** 02:20 | **Duración:** 30s
-**Visual:** MAP-FLOW diurno | **Comp AE:** SC06_FLUJOS_EOD
-
-#### Animación de entrada
-- **Tipo:** Fade desde negro, 500ms → fondo `#F4F6F9`
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa base ZMVM (fondo claro) | 01:50 | fade, 500ms | 02:20 |
-| Límite CDMX-Edomex (línea punteada roja) | 01:52 | draw-on, 600ms | 02:20 |
-| Etiquetas municipios Edomex | 01:53 | fade secuencial, 200ms cada uno | 02:20 |
-| Flechas de flujo (7 rutas principales) | 01:56 | draw-on secuencial desde origen, ease-out, 250ms/flecha | 02:10 |
-| Counter "7,770,000 viajes/día" | 02:05 | count-up 0→7,770,000, 1500ms ease-out expo | 02:20 |
-| Sub-texto "22.5% de todos los viajes" | 02:08 | fade + slide-up, 400ms | 02:20 |
-| Fuente "INEGI, EOD 2017" | 01:52 | fade, 300ms | 02:20 |
-
-#### Sincronización con voz
-- El contador empieza cuando la voz dice "El número es este:"
-- Las flechas terminan de dibujarse antes de que la voz diga "El veintidós punto cinco..."
-
-#### Salida: Cut duro a ESCENA 07
-
----
-
-### ESCENA 07 — Timeline jornada laboral
-**Chunk:** CHUNK_07 | **Inicio:** 02:20 | **Fin:** 02:50 | **Duración:** 30s
-**Visual:** INFOGRAPH timeline horizontal | **Comp AE:** SC07_JORNADA
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Eje horizontal (línea de tiempo) | 02:20 | draw-on izq→der, 800ms | 02:50 |
-| Hito 5:30 AM "Sale de Ecatepec" | 02:23 | drop-in desde arriba + fade, 400ms | 02:50 |
-| Hito 7:00 AM "Cruza frontera" | 02:25 | drop-in, 400ms | 02:50 |
-| Hito 9:00 AM "Llega al trabajo" | 02:27 | drop-in, 400ms | 02:50 |
-| Barra naranja "traslado" | 02:29 | fill izq→der, 600ms | 02:50 |
-| Hito 6:00 PM / 8:00 PM | 02:32 | drop-in secuencial, 400ms c/u | 02:50 |
-| Texto "14 HORAS fuera de casa" | 02:38 | fade + scale, 600ms | 02:50 |
-
-**Regla de sincronización:** Cada hito aparece 0.5 seg antes de que la voz lo mencione (el ojo prepara al oído).
-
-#### Salida: Cut duro a ESCENA 08
-
----
-
-### ESCENA 08 — Diagrama flujo fiscal diferencial
-**Chunk:** CHUNK_08 | **Inicio:** 02:50 | **Fin:** 03:20 | **Duración:** 30s
-**Visual:** DIAGRAM fiscal A vs B | **Comp AE:** SC08_FLUJO_FISCAL
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Trabajador A (Condesa) + ruta completa | 02:51 | build secuencial: ícono → flecha → empresa → ISN → servicio, 500ms por elemento | 03:03 |
-| Trabajador B (Ecatepec) + ruta incompleta | 03:03 | mismo build, pero la flecha de "servicio" no cierra — cut animado en la flecha | 03:18 |
-| Texto "El impuesto sigue al TRABAJO" | 03:10 | fade + slide-up, 400ms | 03:20 |
-| Texto "No al trabajador." | 03:14 | fade (separado, 1 seg después), 400ms | 03:20 |
-
-**Momento crítico:** El "corte" en la flecha de servicios del Trabajador B se anima como un dash animado que se disuelve — visualmente la conexión existe pero está rota. Sincronizado con la pausa dramática del chunk: "El impuesto sigue al TRABAJO. [...] No al trabajador."
-
-#### Salida: Cut duro a ESCENA 09
-
----
-
-### ESCENA 09 — Mapa Metro CDMX vs. límite ZMVM
-**Chunk:** CHUNK_09 | **Inicio:** 03:20 | **Fin:** 03:50 | **Duración:** 30s
-**Visual:** MAP esquemático Metro | **Comp AE:** SC09_METRO
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa base ZMVM (fondo gris Edomex) | 03:20 | fade, 500ms | 03:50 |
-| Líneas Metro (12 líneas colores oficiales) | 03:22 | draw-on simultáneo desde estación Pantitlán/centro, 1500ms | 03:50 |
-| Estaciones (puntos) | 03:23 | appear secuencial, 15ms por estación | 03:50 |
-| Límite CDMX-Edomex (línea punteada roja) | 03:26 | draw-on, 600ms, gruesa — se impone sobre el mapa | 03:50 |
-| Zona Edomex → gris oscuro + texto "SIN COBERTURA" | 03:28 | fill + fade, 700ms | 03:50 |
-| Texto "195 estaciones. 0 en Edomex." | 03:32 | fade + slide-up, 500ms | 03:50 |
-
-**El argumento visual:** Las líneas de Metro se dibujan confiadas y coloridas, luego la línea fronteriza roja aparece y las corta. El Edomex "se oscurece" después de ver el límite. La secuencia cuenta la historia sin narración.
-
-#### Sincronización con voz
-- La frontera roja aparece cuando la voz dice "porque el Metro de Ciudad de México tiene..."
-- El texto "0 en Edomex" aparece en la pausa antes de "La red de transporte masivo..."
-
-#### Salida: Cut duro a ESCENA 10
-
----
-
-### ESCENA 10 — Mapa de pobreza municipal
-**Chunk:** CHUNK_10 | **Inicio:** 03:50 | **Fin:** 04:20 | **Duración:** 30s
-**Visual:** MAP-COR pobreza | **Comp AE:** SC10_POBREZA
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa coroplético ZMVM (pobreza) | 03:50 | revelado coroplético, 800ms | 04:20 |
-| Leyenda escala de colores | 03:51 | fade, 300ms | 04:20 |
-| Highlight Ecatepec (pulso rojo) | 03:56 | scale 100→106% + glow, 400ms, ease-out; loop 2 veces | 04:10 |
-| Counter "43.5% en pobreza" | 03:58 | count-up 0→43.5, 1500ms, ease-out expo | 04:10 |
-| Counter "786,000 personas" | 04:02 | count-up 0→786000, 1500ms | 04:10 |
-| Texto "2° municipio más pobre de México" | 04:06 | fade + slide-up, 500ms | 04:20 |
-| Fuente "CONEVAL 2020" | 03:51 | fade, 300ms | 04:20 |
-
-#### Animación de salida
-- **Tipo:** Fade a negro, 700ms — fin del Acto 3, inicio del Acto 4
-
----
-
-### ESCENA 11 — Tasas ISN + valor agregado
-**Chunk:** CHUNK_11 | **Inicio:** 04:20 | **Fin:** 05:00 | **Duración:** 40s
-**Visual:** MAP-COR tasas (20s) + CHART-BAR valor agregado (20s) | **Comp AE:** SC11_TENSION_ISN
-
-#### Parte A: Mapa tasas ISN (04:20–04:40)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa bicolor CDMX (4%) vs Edomex (2-3%) | 04:20 | fill entidades, 700ms | 04:40 |
-| Etiqueta "CDMX: 4%" | 04:23 | fade, 400ms | 04:40 |
-| Etiqueta "Edomex: 2-3%" | 04:25 | fade, 400ms | 04:40 |
-| Texto "Mayor valor → Mayor ISN → CDMX" | 04:30 | fade + slide-up, 400ms | 04:40 |
-
-#### Parte B: Barras valor agregado (04:40–05:00)
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Ejes X e Y | 04:40 | fade, 300ms | 05:00 |
-| Barras CDMX (azul, más altas) | 04:42 | grow-up desde base, 600ms, ease-out | 05:00 |
-| Barras Edomex (naranja, más bajas) | 04:45 | grow-up, 600ms | 05:00 |
-| Flecha anotación "→ Mayor ISN" | 04:50 | draw-on, 400ms | 05:00 |
-
-#### Sincronización con voz
-- Mapa entra con "Hay un argumento en contra"
-- Transición a barras cuando voz dice "Pero hay una diferencia ESTRUCTURAL"
-
-#### Salida: Cut duro a ESCENA 12
-
----
-
-### ESCENA 12 — Mapa precios de vivienda
-**Chunk:** CHUNK_12 | **Inicio:** 05:00 | **Fin:** 05:35 | **Duración:** 35s
-**Visual:** MAP-COR precios vivienda | **Comp AE:** SC12_VIVIENDA
-
-#### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa ZMVM precio/m² | 05:00 | revelado coroplético, 800ms | 05:35 |
-| Marcador Benito Juárez "~$70,000/m²" | 05:05 | fade + bubble, 400ms | 05:35 |
-| Marcador Ecatepec "~$15,000/m²" | 05:08 | fade + bubble, 400ms | 05:35 |
-| Texto "4.5x diferencia de precio" | 05:15 | fade + scale, 600ms, ease-out | 05:35 |
-| Leyenda gradiente precio | 05:01 | fade, 300ms | 05:35 |
-
-#### Sincronización con voz
-- Los marcadores de precio aparecen cuando la voz dice "entre tres y CINCO VECES mayor"
-- El ratio "4.5x" aparece en la pausa antes de "La periferia no es una elección LIBRE"
-
-#### Animación de salida
-- **Tipo:** Fade a negro, 900ms — transición al Acto 5 (pausa visual más larga)
-
----
-
-### ESCENA 13 — Pantalla oscura "El dato que no existe"
-**Chunk:** CHUNK_13 | **Inicio:** 05:35 | **Fin:** 06:05 | **Duración:** 30s
-**Visual:** TYPO pantalla oscura | **Comp AE:** SC13_EL_DATO
-
-#### Animación de entrada
-- **Tipo:** Ya en negro desde transición ESCENA 12
-- Fondo `#0D1117` — mismo de la apertura
-
-#### Elementos y comportamiento (secuencia de texto progresivo)
 | Elemento | Aparece en | Animación | Sale en | Notas |
 |----------|-----------|-----------|---------|-------|
-| Línea 1: "¿Cuánto del ISN de CDMX viene de trabajo mexiquense?" | 05:38 | fade, 600ms, Inter ExtraBold 48px `#F4F6F9` | — | |
-| [silencio visual 2 seg] | 05:44 | — | — | No mover nada |
-| Línea 2: "Ese dato no existe." | 05:46 | fade, 500ms, Inter ExtraBold 72px `#E8520A` | — | Tamaño mayor = peso mayor |
-| [silencio visual 2 seg] | 05:51 | — | — | |
-| Línea 3: "Podría calcularse." | 05:53 | fade, 500ms, Inter Medium 48px `#93C6E4` | — | Tono más suave = apertura |
-| Diagrama mínimo IMSS+EOD | 05:57 | fade, 500ms | 06:05 | Pequeño, bajo el texto |
+| Mapa base América del Norte (oscuro) | 01:15 | fade, 500ms | 01:40 | Fondo `#121212`, contornos `#A0A0A0` delgados |
+| Líneas de flujo 1964 (delgadas) | 01:17 | draw-on desde origen, 800ms, ease-out | 01:40 | `#F5C518` 1px, Michoacán/GTO/JAL → CA/TX/IL |
+| Líneas de flujo 1990 (medianas) | 01:20 | draw-on, 600ms | 01:40 | `#F5C518` 3px, grosor crece |
+| Líneas de flujo 2010 (gruesas) | 01:23 | draw-on, 600ms | 01:40 | `#F5C518` 5px |
+| Líneas de flujo 2024 (muy gruesas) | 01:26 | draw-on, 800ms | 01:40 | `#F5C518` 8px + glow suave |
+| Texto: "Las rutas no cambiaron. Solo crecieron." | 01:32 | fade + slide-up, 400ms | 01:40 | Barlow Medium 36px, `#F2F2F0` |
+| Fuente "CONAPO, Índice de Intensidad Migratoria 2020" | 01:16 | fade, 300ms | 01:40 | `#A0A0A0`, pie |
 
-#### Salida: Fade progresivo a negro, 1000ms
+**Momento crítico:** Las 4 capas de líneas (1964/1990/2010/2024) deben dibujarse en el mismo recorrido geográfico, diferenciadas solo por grosor. El resultado muestra el mismo mapa engordando a lo largo del tiempo — la geografía "se calcifica."
+
+**Sincronización con voz:** El draw-on de las líneas 2024 comienza cuando la voz dice "La geografía se REPITE."
+
+#### Animación de salida
+- **Tipo:** Fade a negro, 700ms — fin de contexto histórico
 
 ---
 
-### ESCENA 14 — Cierre: mapa con interrogante
-**Chunk:** CHUNK_14 | **Inicio:** 06:05 | **Fin:** 06:30 | **Duración:** 25s
-**Visual:** MAP-FLOW apertura (reutilizado) + "?" | **Comp AE:** SC14_CIERRE
+### ESCENA 05 — Imagen documental: hogar rural
+**Chunk:** CHUNK_03 | **Inicio:** 01:40 | **Fin:** 02:00 | **Duración:** 20s
+**Visual:** IMG-DOC | **Comp AE:** SC05_HOGAR_RURAL
 
-**Estrategia de producción:** SC14 anida SC01 como pre-comp y añade capas encima. No re-renderizar el mapa.
+#### Animación de entrada
+- **Tipo:** Fade desde negro, 600ms
+- Asset: imagen generada con Google Imagen 4 (prompt en visual_brief.md — I02)
 
 #### Elementos y comportamiento
-| Elemento | Aparece en | Animación | Sale en |
-|----------|-----------|-----------|---------|
-| Mapa apertura (pre-comp SC01) | 06:05 | fade desde negro, 800ms | 06:30 |
-| Signo "?" sobre la frontera CDMX-Edomex | 06:10 | scale 0→100% + fade, 600ms, ease-out; luego pulso scale 100→104→100%, loop | 06:25 |
-| Texto "La frontera invisible tiene precio. Nadie lo ha cobrado todavía." | 06:14 | fade, 700ms, Inter Medium 36px `#F4F6F9` | 06:28 |
-| Fade final a negro | 06:25 | fade total, 1200ms | 06:30 |
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Foto hogar rural (full bleed) | 01:40 | fade, 600ms | 02:00 | Tono cálido, luz de tarde |
+| Overlay sólido negro 35% | 01:40 | — | 02:00 | Legibilidad |
+| Bloque texto sobreimpuesto | 01:44 | fade + slide-up, 400ms | 01:57 | Centro inferior |
+| "67,637 millones de dólares anuales" | — | — en bloque — | — | Bebas Neue 48px, `#F5C518` |
+| "sin banco central" | — | — | — | Barlow Medium 30px, `#F2F2F0` |
+| "sin política pública" | — | — | — | Barlow Medium 30px, `#F2F2F0` |
+| "sin plan" | — | — | — | Barlow Medium 30px, `#E63946` |
 
-#### Sincronización con voz
-- El "?" aparece en la pausa de 2 seg antes de la pregunta final ("¿cuánto le debe...")
-- El texto de cierre aparece mientras la voz formula la pregunta
-- El fade a negro comienza en el último beat de la pregunta
+**Sincronización con voz:** El bloque de texto entra cuando la voz dice "México construyó, sin planearlo, una economía paralela de transferencias."
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 06 — inicio del Acto 3
+
+---
+
+### ESCENA 06 — Gráfico de dona: gasto de hogares receptores
+**Chunk:** CHUNK_04 | **Inicio:** 02:00 | **Fin:** 02:30 | **Duración:** 30s
+**Visual:** CHART-DONUT | **Comp AE:** SC06_DONA_GASTO
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Gráfico dona (base) | 02:02 | sweep ease-out, 1000ms, sentido horario | 02:20 | Centro vacío, ancho de anillo 60px |
+| Segmento Alimentación (mayor) | primero en sweep | `#3A86FF` | — | ~35% del círculo |
+| Segmento Vivienda/Renta | en sweep | `#A0A0A0` | — | ~25% |
+| Segmento Salud | en sweep | `#A0A0A0` | — | ~20% |
+| Segmento Educación | en sweep | `#A0A0A0` | — | ~15% |
+| Segmento Ahorro/Inversión | último en sweep | `#F5C518` resaltado | — | 5–15% — el más pequeño |
+| Etiquetas de segmento | 02:06 | fade secuencial + leader line, 300ms c/u | 02:25 | Barlow Condensed 28px |
+| Highlight segmento Ahorro | 02:15 | scale 100→110% + glow dorado, 300ms | 02:25 | Llama la atención sobre el más pequeño |
+| Texto "Solo 5–15% se ahorra o invierte" | 02:18 | fade + slide-up, 400ms | 02:28 | Bebas Neue 48px, `#F5C518`, centro dona |
+| Fuente "INEGI, ENIGH 2022" | 02:02 | fade, 300ms | 02:28 | Pie izq. |
+
+**Sincronización con voz:** El highlight dorado del segmento de ahorro coincide con "lo que el Estado NO provee en esas regiones."
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 07
+
+---
+
+### ESCENA 07 — Barra de progreso tipográfica: 5–15%
+**Chunk:** CHUNK_05 | **Inicio:** 02:30 | **Fin:** 03:00 | **Duración:** 30s
+**Visual:** TYPO + barra horizontal | **Comp AE:** SC07_BARRA_INVERSION
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Barra horizontal fondo gris | 02:32 | fade, 300ms | 02:58 | Rect. 1600×80px, `#A0A0A0` 30% opacidad |
+| Relleno azul (consumo) | 02:34 | fill ease-out izq→der, 1200ms, hasta 85–95% | 02:58 | `#3A86FF` |
+| Relleno dorado (ahorro/inversión) | 02:36 | fill ease-out desde posición 85%, hasta 100%, 600ms | 02:58 | `#F5C518` — el tramo pequeño |
+| Texto "85–95%" | 02:38 | fade, 400ms | 02:58 | Bebas Neue 96px, `#3A86FF`, centrado sobre tramo azul |
+| Texto "consumo básico" | 02:41 | fade + slide-up, 400ms | 02:58 | Barlow Medium 36px, `#F2F2F0` bajo el "85–95%" |
+| Texto "5–15%" | 02:44 | fade, 400ms | 02:58 | Bebas Neue 96px, `#F5C518`, sobre tramo dorado |
+| Texto "ahorro e inversión" | 02:47 | fade + slide-up, 400ms | 02:58 | Barlow Medium 36px, `#A0A0A0` |
+| Línea separadora vertical en el quiebre | 02:37 | draw-on top→bottom, 400ms | 02:58 | Blanco 1px |
+| Texto final: "Las remesas no son capital de desarrollo." | 02:52 | fade + slide-up, 400ms | 02:58 | Barlow Medium 32px, `#F2F2F0` |
+| Texto final: "Son el precio de vivir donde el Estado decidió no invertir." | 02:55 | fade + slide-up, 400ms | 02:58 | Barlow Medium 32px, `#E63946` |
+| Fuente "Estudios basados en ENIGH 2022, BID, CEPAL" | 02:32 | fade, 300ms | 02:58 | `#A0A0A0`, pie |
+
+**Sincronización con voz:** La línea en rojo entra en la pausa antes de "Son el precio..." — 1.5s de silencio visual antes del texto.
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 08
+
+---
+
+### ESCENA 08 — Barras comparativas: inversión pública
+**Chunk:** CHUNK_06 | **Inicio:** 03:00 | **Fin:** 03:30 | **Duración:** 30s
+**Visual:** CHART-BAR comparativo | **Comp AE:** SC08_BARRAS_INV
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Eje Y con escala | 03:02 | fade, 300ms | 03:28 | `#A0A0A0`, Barlow Condensed 24px |
+| Título: "Inversión pública en infraestructura / por habitante" | 03:02 | fade, 300ms | 03:28 | Barlow Medium 32px, `#F2F2F0` |
+| Subtítulo: "Promedio 2018–2023" | 03:03 | fade, 300ms | 03:28 | `#A0A0A0`, 24px |
+| Barra izq.: "Estados alta dependencia de remesas" | 03:06 | grow desde base, ease-out, 800ms | 03:28 | `#E63946`, más baja |
+| Etiqueta barra izq. | 03:09 | fade, 300ms | 03:28 | Barlow Condensed 24px, bajo la barra |
+| Barra der.: "Promedio nacional" | 03:10 | grow desde base, ease-out, 800ms | 03:28 | `#3A86FF`, más alta |
+| Etiqueta barra der. | 03:13 | fade, 300ms | 03:28 | — |
+| Anotación diferencia (línea + número) | 03:16 | draw-on vertical + fade, 500ms | 03:28 | `#F5C518`, marca el gap |
+| Texto: "Las remesas no solo cubren la ausencia del Estado." | 03:22 | fade + slide-up, 400ms | 03:28 | Barlow Medium 32px, `#F2F2F0` |
+| Texto: "TAMBIÉN la sostienen." | 03:26 | fade, 400ms | 03:28 | Bebas Neue 48px, `#E63946` |
+| Fuente "SHCP + BID" | 03:02 | fade, 300ms | 03:28 | `#A0A0A0`, pie |
+
+**Momento crítico:** "TAMBIÉN la sostienen" aparece en la pausa más larga antes del final del chunk. El rojo en Bebas Neue contrasta con el tono analítico del resto de la escena.
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 09
+
+---
+
+### ESCENA 09 — Pirámide de edad doble: Michoacán vs. México
+**Chunk:** CHUNK_07 | **Inicio:** 03:30 | **Fin:** 04:00 | **Duración:** 30s
+**Visual:** SPLIT pirámide demográfica | **Comp AE:** SC09_PIRAMIDE
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Eje central Y (edades) | 03:32 | draw-on top→bottom, 600ms | 03:58 | `#F2F2F0`, etiquetas cohortes cada 10 años |
+| Pirámide derecha: "México promedio 2020" | 03:34 | grow desde eje central, ease-out, 1200ms | 03:58 | `#3A86FF`, barras horizontales |
+| Pirámide izquierda: "Michoacán 2020" | 03:36 | grow desde eje, ease-out, 1200ms | 03:58 | `#A0A0A0`, visiblemente más angosta |
+| Highlight cohorte 20–40 (ambas pirámides) | 03:42 | fill `#E63946`, ease-out, 500ms | 03:56 | La más angosta en Michoacán salta a la vista |
+| Texto: "Los que construirían la economía local ya no están." | 03:48 | fade + slide-up, 400ms | 03:58 | Barlow Medium 32px, `#F2F2F0`, centrado inferior |
+| Fuente "INEGI, Censo de Población 2020" | 03:32 | fade, 300ms | 03:58 | `#A0A0A0`, pie |
+
+**El argumento visual:** Las dos pirámides son espejadas. La de Michoacán muestra la cohorte 20–40 visiblemente menor que el promedio nacional. El highlight rojo hace la comparación obvia sin necesidad de narración.
+
+**Sincronización con voz:** El highlight rojo en la cohorte 20–40 aparece cuando la voz dice "A los hombres en edad productiva."
+
+#### Animación de salida
+- **Tipo:** Fade a negro, 700ms — fin del Acto 3, inicio del clímax
+
+---
+
+### ESCENA 10 — Diagrama de ciclo cerrado
+**Chunk:** CHUNK_08 | **Inicio:** 04:00 | **Fin:** 04:30 | **Duración:** 30s
+**Visual:** DIAGRAM ciclo | **Comp AE:** SC10_CICLO
+
+#### Animación de entrada
+- **Tipo:** Fade desde negro, 700ms. Fondo `#121212`.
+
+#### Elementos y comportamiento (construcción secuencial del ciclo)
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Nodo 1: "Economía local estancada" | 04:02 | scale 0→100% + fade, 500ms | 04:28 | Círculo `#F5C518`, texto interior Barlow 28px |
+| Flecha 1→2 (draw-on curva) | 04:04 | draw-on, 600ms, ease-out | 04:28 | Blanca 2px, arco superior |
+| Nodo 2: "Jóvenes migran" | 04:06 | scale 0→100% + fade, 500ms | 04:28 | Círculo `#E63946` |
+| Flecha 2→3 | 04:08 | draw-on, 600ms | 04:28 | — |
+| Nodo 3: "Remesas llegan" | 04:10 | scale 0→100% + fade, 500ms | 04:28 | Círculo `#3A86FF` |
+| Flecha 3→4 | 04:12 | draw-on, 600ms | 04:28 | — |
+| Nodo 4: "Estado no invierte" | 04:14 | scale 0→100% + fade, 500ms | 04:28 | Círculo `#A0A0A0` |
+| Flecha 4→1 (cierra el ciclo) | 04:16 | draw-on, 800ms, ease-out | 04:28 | `#F5C518` 3px — la flecha de cierre en dorado |
+| El ciclo da una vuelta completa (loop) | 04:20 | recorrido de luz/glow por las flechas, 2000ms | 04:28 | Loop suave, 2 veces |
+| Texto "Sesenta años. El mismo ciclo." | 04:24 | fade, 400ms | 04:28 | Bebas Neue 64px, `#F2F2F0`, centrado inferior |
+
+**Instrucción de producción:** Los 4 nodos forman un cuadrado con flechas curvas entre ellos. La última flecha (4→1) en dorado señala que el ciclo regresa al inicio. No añadir texto adicional — los nodos son auto-explicativos.
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 11 — el ciclo sigue en pantalla pero corta abruptamente (refuerza la trampa)
+
+---
+
+### ESCENA 11 — Gráfico de líneas doble: remesas + pobreza extrema
+**Chunk:** CHUNK_09 | **Inicio:** 04:30 | **Fin:** 05:10 | **Duración:** 40s
+**Visual:** CHART-LINE doble | **Comp AE:** SC11_LINEAS_DUAL
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Ejes X (2000–2024) e Y (escala doble) | 04:32 | fade, 300ms | 05:08 | `#A0A0A0`, Barlow Condensed 22px |
+| Línea 1: "Remesas México (mmd USD)" | 04:34 | draw-on izq→der, 1500ms, ease-out | 05:08 | `#3A86FF`, crece sostenidamente |
+| Línea 2: "% Pobreza extrema (CONEVAL)" | 04:36 | draw-on izq→der, 1500ms, ease-out | 05:08 | `#E63946`, baja pero lentamente |
+| Leyenda (2 líneas) | 04:35 | fade, 300ms | 05:08 | Esquina superior derecha |
+| Anotación texto en gráfico | 04:48 | fade + slide-up, 400ms | 05:08 | "Las remesas sí funcionan. / Pero 60 años no son suficientes." |
+| Highlight punto 2008 (crisis) | 04:52 | punto rojo pulsante, scale 100→120%, 300ms | 05:04 | Señala la resistencia de las remesas |
+| Fuente "Banco Mundial WDI; CONEVAL 2000–2022" | 04:32 | fade, 300ms | 05:08 | `#A0A0A0`, pie |
+
+**Sincronización con voz:** La anotación aparece cuando la voz dice "Ese argumento es completamente REAL." La pausa de 2s antes de "Y es INSUFICIENTE" se produce sobre el gráfico estático — silencio visual deliberado.
+
+#### Animación de salida
+- **Tipo:** Cut duro a ESCENA 12
+
+---
+
+### ESCENA 12 — Mapa de riesgo EE.UU. (puntos de falla)
+**Chunk:** CHUNK_10 | **Inicio:** 05:10 | **Fin:** 05:45 | **Duración:** 35s
+**Visual:** MAP-DOT | **Comp AE:** SC12_RIESGO_EEUU
+
+#### Animación de entrada
+- **Tipo:** Cut directo, fondo `#121212`
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Mapa base EE.UU. (oscuro) | 05:10 | fade, 500ms | 05:43 | Contornos `#A0A0A0` delgados |
+| Estados alta concentración mexicanos iluminados | 05:12 | fill `#F5C518` ease-out, 700ms | 05:43 | California, Texas, Illinois, NY |
+| Mapa espejo de México (derecha) | 05:13 | fade, 500ms | 05:43 | Escala reducida 40%, estados dependientes en `#3A86FF` |
+| Ícono riesgo 1: "Recesión" | 05:18 | scale 0→100% + fade, 400ms | 05:43 | `#E63946`, sobre California |
+| Ícono riesgo 2: "Política migratoria" | 05:22 | scale 0→100% + fade, 400ms | 05:43 | `#E63946`, sobre Texas |
+| Ícono riesgo 3: "Deportaciones masivas" | 05:26 | scale 0→100% + fade, 400ms | 05:43 | `#E63946`, sobre Illinois |
+| Flechas riesgo EE.UU. → México | 05:28 | draw-on, 600ms c/u, ease-out | 05:43 | `#E63946` punteadas — cada ícono tiene su flecha |
+| Estados mexicanos se oscurecen progresivamente | 05:30 | fill `#1A1A1A`, 800ms, ease-out | 05:43 | Michoacán, GTO, JAL, GRO |
+| Texto: "Si el flujo se interrumpe, no tienen alternativa." | 05:36 | fade + slide-up, 400ms | 05:43 | Barlow Medium 32px, `#F2F2F0` |
+| Fuente "Pew Research Center 2023; CONAPO" | 05:11 | fade, 300ms | 05:43 | `#A0A0A0`, pie |
+
+**Sincronización con voz:** Cada ícono de riesgo aparece cuando la voz dice "Se llama X." — tres veces, una por riesgo. Los estados mexicanos se oscurecen durante la pausa después de "Si el flujo se interrumpe."
+
+#### Animación de salida
+- **Tipo:** Fade a negro, 700ms — inicio de Acto 5 (implicación)
+
+---
+
+### ESCENA 13 — Imagen documental: pueblo en silencio
+**Chunk:** CHUNK_11 | **Inicio:** 05:45 | **Fin:** 06:10 | **Duración:** 25s
+**Visual:** IMG-DOC | **Comp AE:** SC13_PUEBLO_VACIO
+
+#### Animación de entrada
+- **Tipo:** Fade desde negro, 700ms
+- Asset: imagen generada con Google Imagen 4 (prompt en visual_brief.md — I03)
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Foto calle pueblo rural (full bleed) | 05:45 | fade, 700ms | 06:08 | Casas de colores, negocios cerrados, luz de tarde |
+| Overlay negro 40% | 05:45 | — | 06:08 | Lecturabilidad |
+| Texto 1: "Las comunidades donde la emigración baja" | 05:52 | fade + slide-up, 400ms | 06:08 | Barlow Medium 30px, `#F2F2F0`, centro inferior |
+| Texto 2: "aún no tienen economía local que las reciba." | 05:56 | fade + slide-up, 400ms | 06:08 | Barlow Medium 30px, `#F2F2F0` |
+| Fuente "CONAPO" | 05:47 | fade, 300ms | 06:05 | `#A0A0A0`, pie |
+
+**Sincronización con voz (Chunk 11, speed=0.85):** El texto 1 entra cuando la voz dice "Las remesas que llegaban están disminuyendo." La pausa larga antes de la pregunta final ocurre sobre el pueblo vacío estático — máximo silencio visual.
+
+#### Animación de salida
+- **Tipo:** Fade a negro, 1000ms — la más lenta del video. Prepara el cierre.
+
+---
+
+### ESCENA 14 — Pantalla negra: pregunta final
+**Chunk:** CHUNK_11 cont. | **Inicio:** 06:10 | **Fin:** 06:30 | **Duración:** 20s
+**Visual:** TYPO sobre negro | **Comp AE:** SC14_PREGUNTA_FINAL
+
+#### Animación de entrada
+- **Tipo:** Ya en negro desde ESCENA 13. Nada aparece hasta 06:13 — 3 segundos de silencio total.
+
+#### Elementos y comportamiento
+| Elemento | Aparece en | Animación | Sale en | Notas |
+|----------|-----------|-----------|---------|-------|
+| Silencio visual | 06:10–06:13 | — ninguno — | — | La voz hace la pausa de 2s antes de la pregunta |
+| Línea 1: "¿Quién paga la deuda" | 06:13 | fade, 600ms — aparece sola | — | Bebas Neue 72px, `#F2F2F0`, centrado |
+| Línea 2: "de sesenta años" | 06:16 | fade, 500ms | — | Bebas Neue 72px, `#F5C518` — dorado |
+| Línea 3: "de desarrollo postergado?" | 06:19 | fade, 500ms | — | Bebas Neue 72px, `#F2F2F0` |
+| Fade final a negro total | 06:25 | fade, 1200ms | 06:30 | Sin texto adicional. Sin logo. Sólo negro. |
+
+**Instrucción de producción:** Esta es la escena más restringida. Nada se mueve. Ningún elemento tiene slide-up. Las tres líneas aparecen en silencio absoluto, una por una. El fade final comienza antes de que termine el audio — el último sonido de voz se apaga en negro.
+
+**Sincronización con voz:** Línea 1 aparece justo cuando la voz comienza "¿quién paga la deuda". Línea 2 en "de sesenta años". Línea 3 en "de desarrollo postergado". La voz termina. El negro permanece 5 segundos antes de cortar.
 
 ---
 
 ## Tabla maestra de timing
 
-| # | Escena | Inicio | Fin | Dur (s) | Visual | Trans. entrada | Trans. salida |
-|---|--------|--------|-----|---------|--------|---------------|---------------|
-| 01 | Apertura nocturna | 00:00 | 00:15 | 15 | MAP-FLOW oscuro | Fade negro →  | Cut |
-| 02 | Diagrama ISN mecanismo | 00:15 | 00:45 | 30 | DIAGRAM | Fade blanco | Cross dissolve |
-| 03 | PIB + pastel servicios | 00:45 | 01:05 | 20 | MAP-COR + PIE | Cross dissolve | Cut |
-| 04 | Crecimiento Ecatepec | 01:05 | 01:30 | 25 | BAR + MAP | Cut | Cut |
-| 05 | Sistema implícito (typo) | 01:30 | 01:50 | 20 | TYPO | Fade negro | Fade negro |
-| 06 | Flujos EOD 2017 | 01:50 | 02:20 | 30 | MAP-FLOW claro | Fade negro → | Cut |
-| 07 | Timeline jornada | 02:20 | 02:50 | 30 | INFOGRAPH | Cut | Cut |
-| 08 | Flujo fiscal diferencial | 02:50 | 03:20 | 30 | DIAGRAM | Cut | Cut |
-| 09 | Metro vs. límite ZMVM | 03:20 | 03:50 | 30 | MAP esquemático | Cut | Cut |
-| 10 | Pobreza municipal | 03:50 | 04:20 | 30 | MAP-COR | Cut | Fade negro |
-| 11 | Tasas ISN + valor agregado | 04:20 | 05:00 | 40 | MAP + BAR | Fade negro → | Cut |
-| 12 | Precios de vivienda | 05:00 | 05:35 | 35 | MAP-COR | Cut | Fade negro |
-| 13 | El dato que no existe | 05:35 | 06:05 | 30 | TYPO oscura | Fade negro → | Fade negro |
-| 14 | Cierre con "?" | 06:05 | 06:30 | 25 | MAP-FLOW (pre-comp) | Fade negro → | Fade negro |
+| # | Escena | Inicio | Fin | Dur (s) | Chunk | Visual | Trans. entrada | Trans. salida |
+|---|--------|--------|-----|---------|-------|--------|---------------|---------------|
+| 01 | Contador tipográfico $67.6B | 00:00 | 00:25 | 25 | C01 | COUNTER | Fade negro → | Cut |
+| 02 | Mapa coroplético dual | 00:25 | 00:45 | 20 | C01 | MAP-COR | Cut | Fade negro |
+| 03 | Bracero B&W (IMG-DOC) | 00:45 | 01:15 | 30 | C02 | IMG-DOC | Fade negro → | Cut |
+| 04 | Flujos migratorios (MAP-FLOW) | 01:15 | 01:40 | 25 | C02 | MAP-FLOW | Cut | Fade negro |
+| 05 | Hogar rural (IMG-DOC) | 01:40 | 02:00 | 20 | C03 | IMG-DOC | Fade negro → | Cut |
+| 06 | Dona gasto hogares | 02:00 | 02:30 | 30 | C04 | CHART-DONUT | Cut | Cut |
+| 07 | Barra inversión 5–15% | 02:30 | 03:00 | 30 | C05 | TYPO+BAR | Cut | Cut |
+| 08 | Barras inversión pública | 03:00 | 03:30 | 30 | C06 | CHART-BAR | Cut | Cut |
+| 09 | Pirámide demográfica doble | 03:30 | 04:00 | 30 | C07 | SPLIT | Cut | Fade negro |
+| 10 | Ciclo cerrado (DIAGRAM) | 04:00 | 04:30 | 30 | C08 | DIAGRAM | Fade negro → | Cut |
+| 11 | Gráfico líneas dual | 04:30 | 05:10 | 40 | C09 | CHART-LINE | Cut | Cut |
+| 12 | Mapa riesgo EE.UU. | 05:10 | 05:45 | 35 | C10 | MAP-DOT | Cut | Fade negro |
+| 13 | Pueblo vacío (IMG-DOC) | 05:45 | 06:10 | 25 | C11 | IMG-DOC | Fade negro → | Fade negro |
+| 14 | Pregunta final (TYPO) | 06:10 | 06:30 | 20 | C11 | TYPO | (en negro) | Fade negro |
 
 ---
 
 ## Assets — checklist de producción
 
-### Mapas
-- [ ] M01 — MAP-FLOW ZMVM nocturno (Esc. 1, 14) — EOD 2017 + shapefile ZMVM
-- [ ] M02 — MAP-COR PIB México por entidad (Esc. 3) — INEGI PIBE 2023 + MGE estatal
-- [ ] M03 — MAP expansión urbana ZMVM décadas (Esc. 4) — INEGI uso de suelo histórico
-- [ ] M04 — MAP-FLOW ZMVM diurno detallado (Esc. 6) — EOD 2017 + shapefile ZMVM
-- [ ] M05 — MAP esquemático Metro CDMX + límite (Esc. 9) — STC Metro GeoJSON + shapefile ZMVM
-- [ ] M06 — MAP-COR pobreza municipal ZMVM (Esc. 10) — CONEVAL 2020 + shapefile municipal
-- [ ] M07 — MAP-COR precios vivienda ZMVM (Esc. 12) — SHF / INFONAVIT
+### Mapas (exportar como SVG o PNG 1920×1080 desde QGIS/Python)
+- [ ] M01 — MAP-COR: México remesas por estado 2024 (Esc. 2a) — Banxico SIE + shapefile INEGI estatal
+- [ ] M02 — MAP-COR: México PIB estatal per cápita 2010–2023 (Esc. 2b) — INEGI PIBE 2023 + shapefile
+- [ ] M03 — MAP-FLOW: América del Norte + líneas migratorias 4 épocas (Esc. 4) — CONAPO IIM 2020
+- [ ] M04 — MAP-DOT: EE.UU. estados + México estados (Esc. 12) — shapefiles ambos países
 
-### Gráficos
-- [ ] G01 — PIE composición PIB CDMX por sector (Esc. 3) — INEGI PIBE 2023
-- [ ] G02 — BAR crecimiento Ecatepec 1970-2020 (Esc. 4) — INEGI Censos
-- [ ] G03 — MAP bicolor tasas ISN (Esc. 11a) — EY Matriz ISN 2025
-- [ ] G04 — BAR valor agregado por sector/entidad (Esc. 11b) — INEGI PIBE + IMSS
+### Gráficos/Diagramas (exportar como SVG desde Datawrapper o Python matplotlib)
+- [ ] G01 — CHART-DONUT: Composición gasto hogares receptores (Esc. 6) — INEGI ENIGH 2022
+- [ ] G02 — TYPO+BAR: Barra progreso 85–95% / 5–15% (Esc. 7) — crear en AE directamente
+- [ ] G03 — CHART-BAR: Inversión pública infraestructura por habitante (Esc. 8) — SHCP + INEGI
+- [ ] G04 — SPLIT: Pirámide demográfica doble Michoacán vs. México (Esc. 9) — INEGI Censo 2020
+- [ ] G05 — DIAGRAM: Ciclo 4 nodos (Esc. 10) — crear en AE directamente
+- [ ] G06 — CHART-LINE: Remesas USD + % pobreza extrema 2000–2024 (Esc. 11) — WB API + CONEVAL
 
-### Fuentes tipográficas (instalar en AE antes de ejecutar JSX)
-- [ ] Inter (todos los pesos: 400, 500, 800) — Google Fonts
-- [ ] JetBrains Mono Regular — Google Fonts
+### Imágenes documentales (generación y descarga)
+- [ ] I01 — Bracero Program B&W (Esc. 3) — Library of Congress (dominio público, descarga directa)
+- [ ] I02 — Hogar rural interior (Esc. 5) — Google Imagen 4 (prompt en visual_brief.md)
+- [ ] I03 — Calle pueblo rural (Esc. 13) — Google Imagen 4 (prompt en visual_brief.md)
 
-### Audio
-- [ ] chunk_01_v1.wav (00:00–00:15)
-- [ ] chunk_02_v1.wav (00:15–00:45)
-- [ ] chunk_03_v1.wav (00:45–01:05)
-- [ ] chunk_04_v1.wav (01:05–01:30)
-- [ ] chunk_05_v1.wav (01:30–01:50)
-- [ ] chunk_06_v1.wav (01:50–02:20)
-- [ ] chunk_07_v1.wav (02:20–02:50)
-- [ ] chunk_08_v1.wav (02:50–03:20)
-- [ ] chunk_09_v1.wav (03:20–03:50)
-- [ ] chunk_10_v1.wav (03:50–04:20)
-- [ ] chunk_11_v1.wav (04:20–05:00)
-- [ ] chunk_12_v1.wav (05:00–05:35)
-- [ ] chunk_13_v1.wav (05:35–06:05)
-- [ ] chunk_14_v1.wav (06:05–06:30)
-- [ ] Música ambiente (opcional, 0-3dB, ambiental electroacústica) — buscar en Epidemic Sound / Artlist
+### Fuentes tipográficas (instalar ANTES de ejecutar ae_script.jsx)
+- [ ] Bebas Neue Bold — Google Fonts
+- [ ] Barlow Medium (400, 500) — Google Fonts
+- [ ] Barlow Condensed Regular — Google Fonts
+
+### Audio (voz sintetizada con ElevenLabs via voice_gen.py)
+- [ ] chunk_01_v1.wav (00:00–00:45)
+- [ ] chunk_02_v1.wav (00:45–01:40)
+- [ ] chunk_03_v1.wav (01:40–02:00)
+- [ ] chunk_04_v1.wav (02:00–02:30)
+- [ ] chunk_05_v1.wav (02:30–03:00)
+- [ ] chunk_06_v1.wav (03:00–03:30)
+- [ ] chunk_07_v1.wav (03:30–04:00)
+- [ ] chunk_08_v1.wav (04:00–04:30)
+- [ ] chunk_09_v1.wav (04:30–05:10)
+- [ ] chunk_10_v1.wav (05:10–05:45)
+- [ ] chunk_11_v1.wav (05:45–06:30) — speed=0.85, stability=0.48
+- [ ] Música ambiente (opcional, 0–3dB, drone electroacústico ambiental) — Epidemic Sound / Artlist
 
 ---
 
 ## Checklist pre-render
 
-- [ ] Ejecutar ae_script.jsx en After Effects — crear estructura de composiciones
-- [ ] Instalar Inter y JetBrains Mono antes de ejecutar el script
-- [ ] Importar todos los WAV de voz y sincronizar con timeline
-- [ ] Importar todos los mapas (SVG/PNG exportados de QGIS/Python)
-- [ ] Importar todos los gráficos (SVG exportados de Flourish/Datawrapper)
-- [ ] Verificar sincronización voz-imagen en puntos críticos (chunks 01, 06, 08, 14)
-- [ ] Color profile: sRGB (para YouTube — no usar Display P3)
+- [ ] Ejecutar `ae_script.jsx` en After Effects (File > Scripts > Run Script File...)
+- [ ] Instalar Bebas Neue y Barlow antes de ejecutar el script
+- [ ] Importar WAV de voz en carpeta `04_VOICE` del proyecto AE
+- [ ] Sincronizar cada WAV con su escena correspondiente en el timeline maestro
+- [ ] Importar mapas (SVG/PNG) en carpeta `02_MAPS`
+- [ ] Importar gráficos en carpeta `03_CHARTS`
+- [ ] Importar imágenes documentales en carpeta `01_IMAGES`
+- [ ] Verificar sincronización voz–imagen en momentos críticos: SC01 (counter), SC04 (flujos), SC10 (ciclo), SC14 (pregunta final)
+- [ ] Revisar que ESCENA 14 no tenga ningún movimiento — solo fade de opacidad
+- [ ] Color profile: sRGB (YouTube — no usar Display P3)
 - [ ] Resolución: 1920×1080, 24fps
-- [ ] Exportar en H.264, 16 Mbps, AAC 320 kbps
-- [ ] Exportar versión corta 9:16 (1080×1920) para IG/TikTok — crop + scale de los mapas
+- [ ] Exportar H.264, 16 Mbps, AAC 320 kbps
+- [ ] Nombre de exportación: `remesas_mx_v1_MASTER.mp4`
 
 ---
+
 *Generado por Agente A5 — Sistema de Video-Ensayos Cartográficos*
