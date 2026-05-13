@@ -45,9 +45,12 @@ Para video-ensayo económico analítico en español:
   "similarity_boost": 0.75,
   "style": 0.30,
   "use_speaker_boost": true,
-  "speaking_rate": 0.90
+  "speed": 0.90
 }
 ```
+
+> **Nota técnica:** El campo correcto en el SDK de ElevenLabs v1.x es `speed` (no `speaking_rate`).
+> Rango: 0.7 (muy lento) — 1.0 (normal) — 1.2 (rápido). Para video-ensayo analítico: 0.85–0.95.
 
 ---
 

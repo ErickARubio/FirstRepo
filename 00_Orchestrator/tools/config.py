@@ -31,11 +31,23 @@ CREDENTIAL_REGISTRY = {
         "required":    True,
         "guide_url":   "https://elevenlabs.io → Profile → API Keys",
     },
+    "GOOGLE_API_KEY": {
+        "service":     "Google AI Studio",
+        "use":         "Generación de imágenes IA (Imagen 3 + Gemini 2.0 Flash)",
+        "required":    True,
+        "guide_url":   "https://aistudio.google.com/app/apikey → Create API Key",
+    },
     "PEXELS_API_KEY": {
         "service":     "Pexels",
         "use":         "Banco de imágenes",
         "required":    False,
         "guide_url":   "https://www.pexels.com/api/",
+    },
+    "PIXABAY_API_KEY": {
+        "service":     "Pixabay",
+        "use":         "Banco de imágenes CC0",
+        "required":    False,
+        "guide_url":   "https://pixabay.com/api/docs/",
     },
     "UNSPLASH_ACCESS_KEY": {
         "service":     "Unsplash",

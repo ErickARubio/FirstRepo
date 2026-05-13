@@ -1,14 +1,14 @@
 """
-Generador de audio para ElevenLabs — Pieza 1 "El impuesto que no regresa"
+Generador de audio con ElevenLabs TTS.
 
 Uso:
-    python 00_Orchestrator/tools/voice_gen.py
+    python 00_Orchestrator/tools/voice_gen.py [NombreDeVoz]
 
 Requisitos previos:
     1. ELEVENLABS_API_KEY en .env
     2. pip install -r 00_Orchestrator/tools/requirements.txt
 
-Genera 14 archivos WAV en 03_Assets/audio/ (chunk_01.wav ... chunk_14.wav).
+Lee 02_Script/script_for_elevenlabs.txt y genera WAVs en 03_Assets/audio/.
 Si un archivo ya existe lo omite — permite reanudar si se interrumpe.
 """
 
@@ -22,9 +22,10 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "00_Orchestrator"))
 
 try:
-    import httpx
+    from elevenlabs.client import ElevenLabs
+    from elevenlabs.types import VoiceSettings
 except ImportError:
-    print("httpx no instalado. Ejecuta: pip install -r 00_Orchestrator/tools/requirements.txt")
+    print("elevenlabs no instalado. Ejecuta: pip install -r 00_Orchestrator/tools/requirements.txt")
     sys.exit(1)
 
 from tools.config import get_credential  # noqa
@@ -33,16 +34,8 @@ from tools.config import get_credential  # noqa
 
 SCRIPT_FILE = ROOT / "02_Script" / "script_for_elevenlabs.txt"
 OUTPUT_DIR  = ROOT / "03_Assets" / "audio"
-VOICE_NAME  = "Mateo"
+VOICE_NAME  = sys.argv[1] if len(sys.argv) > 1 else "Rachel"
 MODEL_ID    = "eleven_multilingual_v2"
-
-VOICE_SETTINGS = {
-    "stability":        0.55,
-    "similarity_boost": 0.75,
-    "style":            0.30,
-    "use_speaker_boost": True,
-    "speed":            0.90,
-}
 
 # ─── PARSER DEL SCRIPT ─────────────────────────────────────────────────────────
 
@@ -81,82 +74,75 @@ def parse_chunks(script_path: Path) -> list:
 
 # ─── API ELEVENLABS ─────────────────────────────────────────────────────────────
 
-def find_voice_id(api_key: str, voice_name: str):
-    r = httpx.get(
-        "https://api.elevenlabs.io/v1/voices",
-        headers={"xi-api-key": api_key},
-        timeout=10,
-    )
-    if r.status_code != 200:
+def find_voice_id(client: ElevenLabs, voice_name: str):
+    """Busca una voz por nombre. Retorna voice_id o None si no existe."""
+    try:
+        voices = client.voices.get_all()
+        # Búsqueda exacta
+        for v in voices.voices:
+            if v.name.lower() == voice_name.lower():
+                return v.voice_id
+        # Búsqueda parcial
+        for v in voices.voices:
+            if voice_name.lower() in v.name.lower():
+                return v.voice_id
         return None
-    voices = r.json().get("voices", [])
-    for v in voices:
-        if v["name"].lower() == voice_name.lower():
-            return v["voice_id"]
-    for v in voices:
-        if voice_name.lower() in v["name"].lower():
-            return v["voice_id"]
-    return None
+    except Exception as e:
+        print(f"Error al buscar voces: {e}")
+        return None
 
 
-def list_spanish_voices(api_key: str) -> list:
-    r = httpx.get(
-        "https://api.elevenlabs.io/v1/voices",
-        headers={"xi-api-key": api_key},
-        timeout=10,
-    )
-    if r.status_code != 200:
+def get_all_voices(client: ElevenLabs) -> list:
+    """Retorna lista de todas las voces disponibles."""
+    try:
+        voices = client.voices.get_all()
+        return [
+            {"name": v.name, "voice_id": v.voice_id, "labels": getattr(v, 'labels', {})}
+            for v in voices.voices
+        ]
+    except Exception as e:
+        print(f"Error al obtener voces: {e}")
         return []
-    out = []
-    for v in r.json().get("voices", []):
-        labels = v.get("labels", {})
-        lang   = (labels.get("language", "") + labels.get("accent", "")).lower()
-        if any(k in lang for k in ("spanish", "espanol", "mexico", "mexican", "es-")):
-            out.append({"name": v["name"], "voice_id": v["voice_id"], "labels": labels})
-    return out
 
 
-def generate_chunk(api_key: str, voice_id: str, text: str, out_path: Path) -> dict:
+def generate_chunk(client: ElevenLabs, voice_id: str, text: str, out_path: Path) -> dict:
+    """Genera un chunk de audio usando ElevenLabs."""
     start = time.time()
     try:
-        r = httpx.post(
-            f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}",
-            headers={
-                "xi-api-key":   api_key,
-                "Content-Type": "application/json",
-                "Accept":       "audio/wav",
-            },
-            json={
-                "text":           text,
-                "model_id":       MODEL_ID,
-                "voice_settings": VOICE_SETTINGS,
-            },
-            timeout=90,
+        audio_iter = client.text_to_speech.convert(
+            voice_id=voice_id,
+            text=text,
+            model_id="eleven_multilingual_v2",
+            voice_settings=VoiceSettings(
+                stability=0.55,
+                similarity_boost=0.75,
+                style=0.30,
+                use_speaker_boost=True,
+                speed=0.90,
+            ),
         )
-    except httpx.TimeoutException:
-        return {"ok": False, "error": "Timeout (90s) — reintenta este chunk"}
+        audio_bytes = b"".join(audio_iter)
     except Exception as e:
-        return {"ok": False, "error": str(e)}
+        error_str = str(e).lower()
+        if "401" in error_str or "unauthorized" in error_str:
+            return {"ok": False, "error": "API key invalida (401) — verifica ELEVENLABS_API_KEY en .env"}
+        elif "422" in error_str:
+            return {"ok": False, "error": f"Parametros invalidos (422): {e}"}
+        elif "429" in error_str:
+            return {"ok": False, "error": "CUOTA AGOTADA (429) — plan gratuito: 10,000 chars/mes"}
+        elif "timeout" in error_str:
+            return {"ok": False, "error": "Timeout — reintenta este chunk"}
+        else:
+            return {"ok": False, "error": str(e)}
 
     elapsed = time.time() - start
 
-    if r.status_code == 200:
-        out_path.parent.mkdir(parents=True, exist_ok=True)
-        out_path.write_bytes(r.content)
-        return {"ok": True, "elapsed": elapsed, "bytes": len(r.content), "chars": len(text)}
-
-    if r.status_code == 401:
-        return {"ok": False, "error": "API key invalida (401) — verifica ELEVENLABS_API_KEY en .env"}
-    if r.status_code == 422:
-        detail = r.json().get("detail", "parametros invalidos")
-        return {"ok": False, "error": f"Parametros invalidos (422): {detail}"}
-    if r.status_code == 429:
-        return {"ok": False, "error": "CUOTA AGOTADA (429) — plan gratuito: 10,000 chars/mes"}
     try:
-        err = r.json()
-    except Exception:
-        err = r.text[:120]
-    return {"ok": False, "error": f"Error HTTP {r.status_code}: {err}"}
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        out_path.write_bytes(audio_bytes)
+        return {"ok": True, "elapsed": elapsed, "bytes": len(audio_bytes), "chars": len(text)}
+    except Exception as e:
+        return {"ok": False, "error": f"Error al guardar archivo: {e}"}
 
 
 # ─── RUNNER ────────────────────────────────────────────────────────────────────
@@ -165,30 +151,35 @@ def run():
     SEP  = "=" * 65
     SEP2 = "-" * 65
     print("\n" + SEP)
-    print("  Voice Generator — El impuesto que no regresa")
-    print(f"  Modelo: {MODEL_ID}  |  Voz objetivo: {VOICE_NAME}")
+    print("  Voice Generator — ElevenLabs TTS")
+    print(f"  Modelo: {MODEL_ID}")
     print(SEP)
 
     api_key = get_credential("ELEVENLABS_API_KEY")
+    client = ElevenLabs(api_key=api_key)
 
     # Verificar voz
-    print(f"\n  Buscando voz '{VOICE_NAME}' en tu cuenta...", end=" ", flush=True)
-    voice_id = find_voice_id(api_key, VOICE_NAME)
-
-    if not voice_id:
-        print("NO ENCONTRADA")
-        print(f"\n  La voz '{VOICE_NAME}' no esta disponible en tu cuenta.")
-        spanish = list_spanish_voices(api_key)
-        if spanish:
-            print("\n  Voces en espanol disponibles:")
-            for v in spanish:
-                print(f"    - {v['name']:<25} ID: {v['voice_id']}")
-        print("\n  Opciones:")
-        print("    1. Anade 'Mateo' desde: elevenlabs.io → Voices → Add Voice → busca Mateo")
-        print("    2. Edita VOICE_NAME en este script con el nombre de una voz disponible")
+    all_voices = get_all_voices(client)
+    if not all_voices:
+        print("\n  Error: no se pudieron obtener voces de la cuenta. Verifica tu API key.")
         sys.exit(1)
 
-    print(f"OK  (voice_id: {voice_id})")
+    print(f"\n  Buscando voz '{VOICE_NAME}'...", end=" ", flush=True)
+    voice_id   = find_voice_id(client, VOICE_NAME)
+    voice_used = VOICE_NAME
+
+    if not voice_id:
+        print("no encontrada — usando primera disponible")
+        voice_id   = all_voices[0]["voice_id"]
+        voice_used = all_voices[0]["name"]
+    else:
+        print("OK")
+
+    print(f"\n  Voces en tu cuenta ({len(all_voices)}):")
+    for v in all_voices:
+        marker = "  >>>" if v["voice_id"] == voice_id else "     "
+        print(f"  {marker} {v['name']:<28} {v['voice_id']}")
+    print(f"\n  Usando: '{voice_used}'  (pasa otro nombre como argumento: voice_gen.py \"Nombre\")")
 
     # Parsear script
     if not SCRIPT_FILE.exists():
@@ -205,8 +196,9 @@ def run():
     else:
         print(f"  OK — dentro del plan gratuito ({10000 - total_chars} chars sobraran)")
 
-    if len(chunks) != 14:
-        print(f"\n  ADVERTENCIA: se esperaban 14 chunks, se encontraron {len(chunks)}")
+    if len(chunks) == 0:
+        print(f"\n  ERROR: no se encontraron chunks en el script. Verifica el formato [CHUNK_XX].")
+        sys.exit(1)
 
     print(f"\n  Output: {OUTPUT_DIR.relative_to(ROOT)}\n")
 
@@ -220,15 +212,16 @@ def run():
         num      = chunk["number"]
         out_path = OUTPUT_DIR / chunk["filename"]
 
+        total_chunks = len(chunks)
         if out_path.exists():
             sz = out_path.stat().st_size // 1024
-            print(f"  [SKIP]  Chunk {num:02d}/14 — {chunk['filename']} ya existe ({sz} KB)")
+            print(f"  [SKIP]  Chunk {num:02d}/{total_chunks} — {chunk['filename']} ya existe ({sz} KB)")
             ok_count   += 1
             chars_used += chunk["chars"]
             continue
 
-        print(f"  Generando chunk {num:02d}/14  ({chunk['chars']} chars)...", end=" ", flush=True)
-        result = generate_chunk(api_key, voice_id, chunk["text"], out_path)
+        print(f"  Generando chunk {num:02d}/{total_chunks}  ({chunk['chars']} chars)...", end=" ", flush=True)
+        result = generate_chunk(client, voice_id, chunk["text"], out_path)
 
         if result["ok"]:
             kb = result["bytes"] / 1024

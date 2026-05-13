@@ -17,7 +17,94 @@ Piensas en tiempo, no en frames. Cada transición tiene una razón narrativa. El
 
 ---
 
-## FASE 1: STORYBOARD TÉCNICO
+## INTEGRACIONES CON APIs DE IA (NUEVO)
+
+### APIs de generación de imágenes y video
+
+| API | Modelo | Casos de uso | Costo |
+|-----|--------|-------------|-------|
+| **Google AI Studio** | Imagen 3 (`imagen-3.0-generate-001`) | Assets principales: fondos, conceptuales, ilustraciones editoriales | Gratis (tier generous) |
+| **Google AI Studio** | Gemini 2.0 Flash imagen | Fallback automático si Imagen 3 no disponible | Gratis |
+| **Runway ML Gen-3** | — | Transiciones animadas, fondos en movimiento (integración manual) | $0.05–0.10/seg |
+
+> **Herramienta primaria:** `tools/ai_asset_generator.py` usa Google Imagen 3 con fallback a Gemini 2.0 Flash.
+> Credencial única: `GOOGLE_API_KEY` desde [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey)
+
+### Identidad visual aplicable por IA
+
+Para mantener coherencia, cada generación recibirá:
+```
+PROMPT_TEMPLATE = """
+Estilo: {visual_style}
+Paleta: {color_palette_hex}
+Tipografía: {font_family}
+Referencia visual: {reference_url}
+Sin watermark, formato PNG/MP4.
+"""
+
+Ejemplo generado:
+"Mapa coroplético de México. Estilo Bloomberg Originals. Paleta: #1a1a1a, #FFD700, #E74C3C. Sin texto. PNG 1920x1080."
+```
+
+---
+
+## FASE 1: RENDERIZADO AUTOMATIZADO CON IA
+
+Este pipeline reemplaza/complementa el trabajo manual en After Effects generando assets visuales automáticamente.
+
+### Paso 1.1: Clasificar visuals del brief
+
+Analiza `visual_brief.md` y clasifica cada visual:
+
+```json
+{
+  "escena_1": {
+    "tipo": "mapa_coroplético",
+    "descripcion": "Mapa de ZMVM con líneas de flujo en ámbar",
+    "generar_con": "geopandas + post-proc IA",
+    "prompt_ia": "Mapa coroplético ZMVM con líneas de flujo amarillas/ámbar sobre fondo oscuro 1920x1080"
+  },
+  "escena_3": {
+    "tipo": "gráfico_barras",
+    "descripcion": "PIB por entidad federativa",
+    "generar_con": "Python (Plotly/Matplotlib) + Stable Diffusion para mejorar",
+    "prompt_ia": null
+  }
+}
+```
+
+### Paso 1.2: Generar assets con IA
+
+Para cada visual que requiera IA, ejecuta directamente:
+
+```bash
+python 00_Orchestrator/tools/ai_asset_generator.py --visual-brief 03_Assets/visual_brief.md
+```
+
+El script:
+1. Parsea `visual_brief.md` buscando secciones `### ESCENA N`
+2. Genera cada imagen vía Replicate/SDXL (1344×768, relación 16:9)
+3. Post-procesa: ajusta contraste/saturación y redimensiona a 1920×1080
+4. Guarda en `03_Assets/ai_generated/scene_NN_generated_branded.png`
+
+Credencial requerida: `REPLICATE_API_TOKEN` en `.env`
+
+### Paso 1.3: Validar y aplicar identidad visual
+
+```python
+def validate_generated_asset(img_path, config):
+    """Valida que respete identidad visual."""
+    checks = {
+        "palette_match": check_palette_consistency(img_path, config["palette_hex"]),
+        "text_readable": check_text_contrast(img_path),
+        "watermark_free": not check_watermark(img_path),
+    }
+    return all(checks.values())
+```
+
+---
+
+## FASE 2: STORYBOARD TÉCNICO
 
 Para cada escena del guion, produce una especificación de animación detallada.
 
@@ -28,6 +115,7 @@ Para cada escena del guion, produce una especificación de animación detallada.
 **Chunk de voz:** [CHUNK_0N]
 **Inicio:** [MM:SS] | **Fin:** [MM:SS] | **Duración:** [N]s
 **Visual:** [tipo del visual_brief]
+**Asset generado:** [ruta al archivo IA o nativo]
 
 #### Animación de entrada
 - **Tipo:** [Fade / Wipe / Slide / Scale / Reveal / Cut]
@@ -51,7 +139,9 @@ Para cada escena del guion, produce una especificación de animación detallada.
 
 ---
 
-## FASE 2: REGLAS DE MOTION DESIGN
+---
+
+## FASE 3: REGLAS DE MOTION DESIGN
 
 ### Easing y timing
 
@@ -87,16 +177,17 @@ Para números grandes con impacto (ej: "40 mil millones de dólares"):
 
 ---
 
-## FASE 3: SCRIPT EXTENDSCRIPT (.JSX) PARA AFTER EFFECTS
+## FASE 4: SCRIPT EXTENDSCRIPT (.JSX) PARA AFTER EFFECTS CON IA
 
-Genera un script `.jsx` funcional que automatice la creación de la estructura del proyecto en After Effects.
+Genera un script `.jsx` funcional que automatice la creación del proyecto en After Effects, integrando assets generados con IA.
 
-### Estructura del script
+### Estructura del script mejorada
 
 ```javascript
-// ae_script.jsx — Generado por Agente A5
+// ae_script.jsx — Generado por Agente A5 con soporte IA
 // Proyecto: [nombre del video]
 // Fecha: [fecha]
+// Assets generados con: Google Imagen 3 / Gemini 2.0 Flash / Runway ML
 
 // ─── CONFIGURACIÓN GLOBAL ──────────────────────────────
 var PROJECT_NAME = "[slug del proyecto]";
@@ -104,15 +195,42 @@ var FRAME_RATE = 24;
 var WIDTH = 1920;
 var HEIGHT = 1080;
 var DURATION_SECONDS = [duración total];
+var ASSETS_FOLDER = "./03_Assets/";  // Carpeta con assets generados
 
-// Paleta del proyecto (del visual_brief)
+// Paleta del proyecto
 var COLORS = {
-    bg_primary:    [R, G, B],  // en escala 0-1
+    bg_primary:    [R, G, B],
     bg_secondary:  [R, G, B],
     text_primary:  [R, G, B],
     accent_1:      [R, G, B],
     accent_2:      [R, G, B]
 };
+
+// Mapa de assets generados con IA
+var IA_ASSETS = {
+    "scene_01_mapa": ASSETS_FOLDER + "ai_generated/scene_01_mapa_zmvm.png",
+    "scene_03_grafico": ASSETS_FOLDER + "ai_generated/scene_03_pie_chart.png",
+    "scene_11_diagrama": ASSETS_FOLDER + "ai_generated/scene_11_flow_diagram.mp4"
+};
+
+// ─── IMPORTAR ASSET GENERADO POR IA ────────────────────
+function importAIGeneratedAsset(assetPath) {
+    var file = new File(assetPath);
+    if (file.exists) {
+        var importOptions = new ImportOptions(file);
+        importOptions.forceAlphas = true;
+        var footageItem = app.project.importFile(importOptions);
+        return footageItem;
+    }
+    return null;
+}
+
+// ─── APLICAR IDENTIDAD VISUAL ────────────────────────
+function applyBrandIdentity(layer, colorAccent) {
+    // Agregar adjustment layer para mantener coherencia
+    var adjustment = layer.containingComp.layers.addShape();
+    adjustment.property("Contents").addProperty("Fill");
+}
 
 // ─── CREAR COMPOSICIÓN MAESTRA ────────────────────────
 function createMasterComp() {
@@ -212,7 +330,7 @@ buildProject();
 
 ---
 
-## FASE 4: ANIMATION PLAN FINAL
+## FASE 5: ANIMATION PLAN FINAL
 
 Produce `animation_plan.md` con:
 

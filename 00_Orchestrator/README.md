@@ -188,7 +188,9 @@ Los archivos generados se guardan en las carpetas temáticas del proyecto princi
 |------------|-----|-------|
 | Claude (Sonnet o superior) | Orquestador + todos los agentes | API Anthropic |
 | ElevenLabs | Síntesis de voz narración | Plan Creator+ |
-| After Effects | Animación y motion graphics | Adobe CC |
+| Replicate (Stable Diffusion) | Generación automática de visuals | $0.01–0.05/imagen |
+| Runway ML (opcional) | Generación de video/transiciones | $0.08/seg |
+| After Effects | Animación final y composición | Adobe CC |
 | QGIS (opcional) | Producción de mapas complejos | Gratuito |
 | Python + geopandas (opcional) | Automatización de mapas | Gratuito |
 | Flourish (opcional) | Gráficos animados sin código | Gratuito/Pro |
