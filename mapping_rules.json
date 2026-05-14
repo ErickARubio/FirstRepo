@@ -1,0 +1,164 @@
+{
+  "project": {
+    "slug": "remesas-mx-2024",
+    "title": "Remesas en México",
+    "language": "es-MX",
+    "target_duration_seconds": 390,
+    "created": "2026-05-13",
+    "entry_point": "main.py"
+  },
+
+  "visual_standard": {
+    "palette": "editorial_nordico",
+    "resolution": [1920, 1080],
+    "fps": 30,
+    "fonts": {
+      "display": "Playfair Display",
+      "body":    "Source Sans Pro",
+      "mono":    "Source Code Pro"
+    },
+    "colors": {
+      "bg_primary":    "#FAFAF8",
+      "bg_secondary":  "#F0EDE6",
+      "text_primary":  "#1A1A1A",
+      "text_secondary":"#5A5A5A",
+      "accent_1":      "#C41E3A",
+      "accent_2":      "#2B4C8C"
+    }
+  },
+
+  "datasets": [
+    {
+      "id": "D01",
+      "name": "Remesas familiares por entidad federativa",
+      "institution": "Banco de México",
+      "api": "banxico_sie",
+      "series_ids": "SE55093,SE55094,SE55095,SE55096,SE55097,SE55098,SE55099,SE55100,SE55101,SE55102,SE55103,SE55104,SE55105,SE55106,SE55107,SE55108,SE55109,SE55110,SE55111,SE55112,SE55113,SE55114,SE55115,SE55116,SE55117,SE55118,SE55119,SE55120,SE55121,SE55122,SE55123,SE55124",
+      "endpoint": "/series/{ids}/datos/oportuno",
+      "fetcher": "tools.data_fetcher.fetch_remesas_banxico",
+      "granularity": "estatal",
+      "frequency": "anual",
+      "unit": "millones USD",
+      "visual_destination": "M01",
+      "datawrapper_type": "d3-maps-choropleth",
+      "basemap": "mexico-estados",
+      "csv_schema": {
+        "columns": ["estado", "remesas_musd"],
+        "types":   ["string", "float"],
+        "example": ["Michoacán", 4241.2]
+      },
+      "palette_config": {
+        "variable": "remesas_musd",
+        "scale": "sequential",
+        "range_min": 0,
+        "range_max": 6500,
+        "datawrapper_palette": "OrRd"
+      },
+      "notes": "IDs SE55093-SE55124 pendientes de verificar con api_inspector.py"
+    },
+    {
+      "id": "D02",
+      "name": "PIB por entidad federativa — crecimiento acumulado",
+      "institution": "INEGI",
+      "api": "inegi_bise",
+      "indicator_id": "6207020003",
+      "area_codes": "01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32",
+      "base_year": "2010",
+      "fetcher": "tools.data_fetcher.fetch_pibe_inegi",
+      "granularity": "estatal",
+      "frequency": "anual",
+      "unit": "% crecimiento desde base_year",
+      "visual_destination": "M02",
+      "datawrapper_type": "d3-maps-choropleth",
+      "basemap": "mexico-estados",
+      "csv_schema": {
+        "columns": ["estado", "crecimiento_pct"],
+        "types":   ["string", "float"],
+        "example": ["Querétaro", 87.3]
+      },
+      "palette_config": {
+        "variable": "crecimiento_pct",
+        "scale": "divergent",
+        "center": 0,
+        "range_min": -20,
+        "range_max": 120,
+        "datawrapper_palette": "BuRd"
+      },
+      "notes": "Indicador 6207020003 pendiente de verificar; alternativas: 6207020001, 6200033148"
+    },
+    {
+      "id": "D03",
+      "name": "Remesas México — serie histórica anual total",
+      "institution": "Banco de México",
+      "api": "banxico_sie",
+      "series_ids": "SE27813",
+      "endpoint": "/series/SE27813/datos",
+      "granularity": "nacional",
+      "frequency": "anual",
+      "unit": "millones USD",
+      "visual_destination": "G01",
+      "datawrapper_type": "d3-lines",
+      "csv_schema": {
+        "columns": ["año", "remesas_musd"],
+        "types":   ["int", "float"],
+        "example": [2024, 63400]
+      },
+      "notes": "Serie nacional; confirmar ID con api_inspector.py test B2"
+    },
+    {
+      "id": "D04",
+      "name": "Remesas como % del PIB — comparativa países",
+      "institution": "World Bank",
+      "api": "world_bank",
+      "indicator": "BX.TRF.PWKR.DT.GD.ZS",
+      "countries": ["MX", "HN", "GT", "SV", "PH", "IN", "EG"],
+      "endpoint": "https://api.worldbank.org/v2/country/{iso}/indicator/{indicator}",
+      "granularity": "nacional",
+      "frequency": "anual",
+      "unit": "% del PIB",
+      "visual_destination": "G02",
+      "datawrapper_type": "column-chart",
+      "csv_schema": {
+        "columns": ["pais", "iso2", "remesas_pct_pib", "año"],
+        "types":   ["string", "string", "float", "int"],
+        "example": ["México", "MX", 3.8, 2023]
+      },
+      "notes": "API pública, sin token requerido"
+    },
+    {
+      "id": "D05",
+      "name": "Hogares receptores de remesas por estado",
+      "institution": "INEGI — ENIGH",
+      "api": "manual_download",
+      "download_url": "https://www.inegi.org.mx/programas/enigh/nc/2022/",
+      "granularity": "estatal",
+      "frequency": "bianual",
+      "unit": "% de hogares",
+      "visual_destination": "G03",
+      "datawrapper_type": "d3-dot-plot",
+      "csv_schema": {
+        "columns": ["estado", "hogares_pct"],
+        "types":   ["string", "float"],
+        "example": ["Michoacán", 18.4]
+      },
+      "notes": "Descarga manual; tabla Concentrado de hogares ENIGH 2022"
+    }
+  ],
+
+  "assets": {
+    "maps":   ["M01", "M02", "M03", "M04"],
+    "charts": ["G01", "G02", "G03", "G04", "G05", "G06", "G07"],
+    "images": ["I01", "I02", "I03"]
+  },
+
+  "apis_required": ["banxico", "inegi", "world_bank", "elevenlabs", "google_ai"],
+  "apis_optional": ["datawrapper", "pexels", "unsplash", "pixabay"],
+
+  "agent_sequence": [
+    {"step": 1, "agent": "researcher",         "output": "workspace/research/",         "checkpoint": "research"},
+    {"step": 2, "agent": "scriptwriter",        "output": "workspace/script/",           "checkpoint": "script"},
+    {"step": 3, "agent": "visual_director",     "output": "workspace/assets/",           "checkpoint": "visuals"},
+    {"step": 4, "agent": "voice_director",      "output": "workspace/assets/audio/",     "checkpoint": "voice"},
+    {"step": 5, "agent": "animation_director",  "output": "animation/",                  "checkpoint": "animation"}
+  ]
+}
